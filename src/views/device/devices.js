@@ -3,6 +3,7 @@ import {
   View,
   Text,
   Image,
+  FlatList,
   ListView,
   StyleSheet,
   TouchableHighlight,
@@ -13,22 +14,30 @@ import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR } from "../../../globalconfi
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-export default class Equipment extends Component {
+export default class Devices extends Component {
   state = {
     recordList: [{
       img: 'http://placeholder.qiniudn.com/100x100',
       title: '韩国导光臂',
       order: '452118453453158',
       time: '1分23秒',
+      key: 1,
     },{
       img: 'http://placeholder.qiniudn.com/100x100',
       title: '韩国导光臂',
       order: '452118453453158',
       time: '1分23秒',
+      key: 2,
+    },{
+      img: 'http://placeholder.qiniudn.com/100x100',
+      title: '韩国导光臂',
+      order: '452118453453158',
+      time: '1分23秒',
+      key: 3,
     }]
   }
   renderRecord = (list)=> (
-    <View style={styles.list_wrapper}>
+    <View key={list.key} style={styles.list_wrapper}>
       <Image source={{uri: list.img}} style={{width: 50, height: 50,marginRight: 10, marginLeft: 18}} />
       <View style={[styles.borderB,{flex: 1, flexDirection: 'row', justifyContent: "space-between", paddingBottom: 15}]}>
         <View style={{flex: 1, justifyContent: 'center', }}>
@@ -59,9 +68,12 @@ export default class Equipment extends Component {
         </View>
         {
           recordList.length > 0 &&
-          <ListView
-            dataSource={ds.cloneWithRows(recordList)}
-            renderRow={(rowData)=> this.renderRecord(rowData)}
+          <FlatList
+            data={recordList}
+            renderItem={({item})=> this.renderRecord(item)}
+            getItemLayout={(data, index)=> (
+              {length: 75, offset: 75 * index, index}
+            )}
           />
         }
       </View>
@@ -78,17 +90,17 @@ const styles = StyleSheet.create({
   borderB: {
     borderStyle: 'solid',
     borderBottomColor: BORDER_COLOR,
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 1/SCREEN_PIXELRADIO,
   },
   title: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    height: 150/SCREEN_PIXELRADIO,
+    height: 45,
     backgroundColor: '#fff',
     borderStyle: 'solid',
     borderBottomColor: BORDER_COLOR,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1/SCREEN_PIXELRADIO,
   },
   title_text: {
     flex: 1,

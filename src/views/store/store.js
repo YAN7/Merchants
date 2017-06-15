@@ -11,8 +11,9 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { SCREEN_PIXELRADIO, APP_COLOR } from "../../../globalconfig";
 
-export default class HomePage extends Component {
+export default class Store extends Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View>
         <LinearGradient locations={[0, 0.8]} colors={['#82dcf3', '#3eadf3']} style={styles.header}>
@@ -32,7 +33,12 @@ export default class HomePage extends Component {
             </View>
           </View>
         </LinearGradient>
-        <TouchableHighlight underlayColor="rgb(210, 230,255)"  activeOpacity={0.5}  style={styles.order_manager} activeOpacity={0.8}>
+        <TouchableHighlight
+          underlayColor="rgb(210, 230,255)"
+          activeOpacity={0.5}
+          style={styles.order_manager}
+          activeOpacity={0.8}
+          onPress={()=> {navigation.navigate("OrderManager")}}>
           <View style={[styles.rowdisplay, styles.order_manager_content]}>
             <View style={{flex: 1}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -43,7 +49,7 @@ export default class HomePage extends Component {
                 <Text style={{marginLeft: 10, color: APP_COLOR}}>62</Text>
               </Text>
             </View>
-            <Image style={{width: 30, height: 30}} source={require("../../static/img/common_tab_store_s.png")}/>
+            <Image style={{width: 40, height: 40}} source={require("../../static/img/store_customer_icon.png")}/>
           </View>
         </TouchableHighlight>
         <TouchableHighlight underlayColor="rgb(210, 230,255)"  activeOpacity={0.5}  style={styles.order_manager} activeOpacity={0.8}>
@@ -57,10 +63,9 @@ export default class HomePage extends Component {
                 <Text style={{marginLeft: 10, color: APP_COLOR}}>62</Text>
               </Text>
             </View>
-            <Image style={{width: 30, height: 30}} source={require("../../static/img/common_tab_store_s.png")}/>
+            <Image style={{width: 40, height: 40}} source={require("../../static/img/store_order_icon.png")}/>
           </View>
         </TouchableHighlight>
-        {/* <Button title={"go to Test"} onPress={()=> {this.props.navigation.navigate('Test')}}/> */}
       </View>
     )
   }
@@ -118,6 +123,7 @@ const styles = StyleSheet.create({
   },
   order_manager: {
     margin: 14,
+    marginBottom: 0,
     height: 100,
     paddingHorizontal: 18,
     borderRadius: 5,

@@ -11,67 +11,46 @@ import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 
 import { TabBarItem } from "./components";
 import {
-  HomePage,
+  Store,
   Equipment,
-  Test
+  Test,
+  OrderManager,
+  IndexPage,
 } from "./views";
-
-const IndexPage = TabNavigator({
-  HomePage: {
-    screen: HomePage,
-
-    navigationOptions: {
-      tabBarLabel: '店铺',
-      tabBarIcon: ({ focused, tintColor })=> (
-        <Image
-          source={require('./static/img/common_tab_store_s.png')}
-          style={{height: 20, width: 20, tintColor: focused ? '#3EADF3' : '#999'}} />
-      ),
-    }
-  },
-  Equipment: {
-    screen: Equipment,
-    navigationOptions: {
-      tabBarLabel: '设备',
-      tabBarIcon: ({ focused, tintColor })=> (
-        <Image
-          source={require('./static/img/common_tab_device_s.png')} style={{height: 20, width: 20}}
-          style={{height: 20, width: 20, tintColor: focused ? '#3EADF3' : '#999'}}/>
-      ),
-    }
-  }
-}, {
-  tabBarComponent:TabBarBottom,
-  tabBarPosition: 'bottom',
-  swipeEnabled: false,
-  lazy: true,
-  showIcon: false,
-  // initialRouteName: 'Equipment',
-  tabBarOptions: {
-     activeTintColor: '#3EADF3',
-     inactiveTintColor: '#999',
-  },
-  labelStyle: {
-    indicatorStyle: {
-      height: 0,
-    },
-    labelStyle: {
-      fontSize: 32
-    }
-  }
-})
+import { BORDER_COLOR } from "../globalconfig";
 
 const YmlMerchants = StackNavigator({
-  IndexPage: { screen: IndexPage },
+  IndexPage: {
+    screen: IndexPage,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  OrderManager: {
+    screen: OrderManager,
+    headerTintColor: 'red',
+    navigationOptions: {
+      title: "订单管理",
+    }
+  },
   Test: { screen: Test },
 }, {
+  initialRouteName: "OrderManager",
   navigationOptions: {
-    header: null
+    gesturesEnabled: true,
+    headerStyle: {
+      height: 44,
+      elevation: 0,
+      shadowColor: 'transparent',
+      borderColor: BORDER_COLOR,
+      borderBottomWidth: 1,
+      // borderBottomStyle: 'solid',
+    },
+    headerTitleStyle: {
+      textAlign: 'center',
+      fontWeight: '100',
+    }
   }
 })
-
-const styles = StyleSheet.create({
-
-});
 
 AppRegistry.registerComponent('YmlMerchants', () => YmlMerchants);
