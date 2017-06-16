@@ -2,6 +2,7 @@ import { Dimensions, PixelRatio, Platform } from "react-native";
 
 export const APP_COLOR = "#3EADF3";
 export const BORDER_COLOR = "#E2E2E2";
+export const BG_COLOR = "#fbfbff";
 
 // 屏幕宽高,像素比例
 export const SCREEN_WIDTH = Dimensions.get('window').width;

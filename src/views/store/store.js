@@ -10,12 +10,15 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import { SCREEN_PIXELRADIO, APP_COLOR } from "../../../globalconfig";
+import { NoItem } from '../../components';
 
 export default class Store extends Component {
   render() {
     const { navigation } = this.props;
+    const title = { title: "123" }
     return (
       <View>
+        {/* <NoItem {...title}/> */}
         <LinearGradient locations={[0, 0.8]} colors={['#82dcf3', '#3eadf3']} style={styles.header}>
           <View style={styles.storename}>
             <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_nav_btn_back.pngstore_settings_icon.png")}/>
