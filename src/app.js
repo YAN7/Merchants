@@ -18,6 +18,14 @@ import {
   IndexPage,
   DevicesData,
   OrderDetail,
+  CustomerManager,
+  CustomDetail,
+  Settings,
+  ValiPassword,
+  FindPassword,
+  MyDevices,
+  Login,
+  MessageCenter,
 } from "./views";
 import { BORDER_COLOR } from "../globalconfig";
 
@@ -37,9 +45,16 @@ const YmlMerchants = StackNavigator({
   },
   DevicesData: {screen: DevicesData},
   OrderDetail: {screen: OrderDetail},
-  Test: { screen: Test },
+  CustomerManager: {screen: CustomerManager},
+  CustomDetail: {screen: CustomDetail},
+  Settings: {screen: Settings},
+  ValiPassword: { screen: ValiPassword },
+  FindPassword: { screen: FindPassword },
+  MyDevices: { screen: MyDevices },
+  Login: { screen: Login },
+  MessageCenter: { screen: MessageCenter },
 }, {
-  initialRouteName: "OrderDetail",
+  initialRouteName: "MessageCenter",
   navigationOptions: {
     gesturesEnabled: true,
     headerStyle: {
