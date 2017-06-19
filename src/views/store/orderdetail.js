@@ -3,13 +3,15 @@ import {
   Text,
   View,
   Image,
+  FlatList,
   StyleSheet,
   ScrollView,
+  TouchableHighlight,
 } from "react-native";
 
 import {APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO} from "../../../globalconfig";
 
-const ListItem = ({leftText, rightText, style})=> (
+const ListTitle = ({leftText, rightText, style})=> (
   <View style={styles.borderB}>
     <View style={[style, styles.row_center, {backgroundColor: BG_COLOR}]}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -21,6 +23,42 @@ const ListItem = ({leftText, rightText, style})=> (
   </View>
 )
 
+/*
+  isFirstList: 是否是列表中的第一条,如果是,则marginTop为10, 否则为0
+  isMarked: 是否是标记列表,如果是,则value的颜色的APP_COLOR,否则为普通颜色
+*/
+const ListContent = ({item, value, isFirstList, isMarked, lineNumber, style})=> (
+  <View style={{flexDirection: 'row', marginHorizontal: 10, marginTop: isFirstList ? 10 : 0}}>
+    <Text style={{color: "#4a4a4a", fontWeight: '200'}}>{item}:</Text>
+    <Text numberOfLines={lineNumber} style={[{color: isMarked ? APP_COLOR : "#4a4a4a", margin: 10, fontWeight: '200', marginTop: 0, flex: 1}]}>{value}</Text>
+  </View>
+)
+
+ListContent.defaultProps = {
+  lineNumber: 1,
+}
+
+/*
+  isTwoSide: 是否是两列展示,如果是,布局为space-betweent,否则为普通布局
+*/
+const ListTips = ({item, value, isTwoSide})=> (
+  isTwoSide
+  ? <View style={[styles.row_center, {paddingTop: 0}]}>
+      <Text style={{fontSize: 15, color: '#333'}}>{item}</Text>
+      <Text style={{fontSize: 15, color: APP_COLOR}}>{value}</Text>
+    </View>
+  : <View style={[styles.row_center,{ paddingTop: 0}]}>
+      <Text style={{fontSize: 14, color: '#999'}}>{item}</Text>
+      <Text style={{fontSize: 14, color: '#999'}}>{value}</Text>
+    </View>
+)
+
+const ListWrapper = ({children})=> (
+  <View style={{marginTop: 10, marginBottom: 0, backgroundColor: BG_COLOR}}>
+    {children}
+  </View>
+)
+
 class OrderDetail extends Component {
   static navigationOptions = {
     title: '订单详情',
@@ -29,54 +67,80 @@ class OrderDetail extends Component {
     }
   }
 
+  state = {
+    recordList: [{
+      date: '2017-058-26',
+      time: '23:18:00',
+      name: '张三',
+    },{
+      date: '2017-058-26',
+      time: '23:18:00',
+      name: '李四',
+    },{
+      date: '2017-058-26',
+      time: '23:18:00',
+      name: '王五',
+    }]
+  }
+
+  _renderServiceRecord = (item, index)=> (
+    <View key={index} style={[styles.borderB, {paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', height: 45}]}>
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <Image style={{width: 20, height: 20, marginRight: 10}} source={require("../../static/img/time.png")} />
+        <Text>{item.date}</Text>
+      </View>
+      <Text style={{flex: 1, textAlign: 'center'}}>{item.time}</Text>
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+        <Image style={{width: 20, height: 20, marginRight: 10}} source={require("../..//static/img/store_physician_icon.png")} />
+        <Text>{item.name}</Text>
+      </View>
+    </View>
+  )
+
   render() {
     return (
       <ScrollView>
-        <ListItem style={{marginBottom: 10}} leftText="交易状态" rightText="退款失败" />
-        <View style={{backgroundColor: BG_COLOR}}>
-          <ListItem leftText="买家信息" />
-          <Text style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 10, paddingBottom: 6}}>联系人: 王小姐</Text>
-          <Text style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 6, paddingBottom: 12}}>手机号: 186 6552 5684</Text>
-        </View>
-        <View style={{backgroundColor: BG_COLOR, marginTop: 10}}>
-          <ListItem leftText="项目信息" />
-          <Text numberOfLines={1} style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 10, paddingBottom: 6}}>项目名称: 了即可了解</Text>
-          <Text style={[styles.borderB, {color: "#4a4a4a", marginHorizontal: 10, paddingTop: 6, paddingBottom: 12}]}>项目分类:  深层清洁</Text>
-          <View style={styles.row_center}>
-            <Text style={{fontSize: 14, color: '#999'}}>销售价</Text>
-            <Text style={{fontSize: 14, color: '#999'}}>&yen; 256</Text>
-          </View>
-          <View style={[styles.row_center, {paddingTop: 0}]}>
-            <Text style={{fontSize: 14, color: '#999'}}>优惠券</Text>
-            <Text style={{fontSize: 14, color: '#999'}}>- &yen; 2.00</Text>
-          </View>
-          <View style={[styles.row_center, {paddingTop: 0}]}>
-            <Text style={{fontSize: 15, color: '#333'}}>实收款</Text>
-            <Text style={{fontSize: 15, color: APP_COLOR}}>&yen;8800.00</Text>
-          </View>
-        </View>
-        <View style={{backgroundColor: BG_COLOR, marginTop: 10}}>
-          <ListItem leftText="退款申请" />
-          <Text numberOfLines={1} style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 10, paddingBottom: 6}}>是否已接受服务: 是</Text>
-          <Text style={[styles.borderB, {color: "#4a4a4a", marginHorizontal: 10, paddingTop: 6, paddingBottom: 12}]}>选择退款原因:  无条件退款</Text>
-          <Text style={[styles.borderB, {color: "#4a4a4a", marginHorizontal: 10, paddingTop: 6, paddingBottom: 12}]}>退款:
-            <Text style={{color: APP_COLOR}}>&yen;0.00(全额)</Text>
-          </Text>
-          <Text numberOfLines={1} style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 10, paddingBottom: 6}}>备注: 跟想象中的效果差很多</Text>
-        </View>
-        <View style={{backgroundColor: BG_COLOR, marginTop: 10}}>
-          <ListItem leftText="退款审核" />
-          <Text numberOfLines={1} style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 10, paddingBottom: 6}}>商户审核:
-            <Text style={{color: APP_COLOR}}>不通过</Text>
-          </Text>
-          <Text style={[styles.borderB, {color: "#4a4a4a", marginHorizontal: 10, paddingTop: 6, paddingBottom: 12}]}>拒绝原因:
-            <Text>无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款无条件退款</Text>
-          </Text>
-          <Text style={[styles.borderB, {color: "#4a4a4a", marginHorizontal: 10, paddingTop: 6, paddingBottom: 12}]}>退款:
-            <Text style={{color: APP_COLOR}}>&yen;0.00(全额)</Text>
-          </Text>
-          <Text numberOfLines={1} style={{color: "#4a4a4a", paddingHorizontal: 10, paddingTop: 10, paddingBottom: 6}}>备注: 跟想象中的效果差很多</Text>
-        </View>
+        <ListTitle leftText="交易状态" rightText="退款失败" />
+        <ListWrapper>
+          <ListTitle leftText="买家信息" />
+          <ListContent isFirstList item='联系人' value="王小姐" />
+          <ListContent item="手机号" value="18565082419"/>
+        </ListWrapper>
+        <ListWrapper>
+          <ListTitle leftText="项目信息" />
+          <ListContent isFirstList item="项目名称" value="[广州玻尿酸注射美容]" />
+          <ListContent item="项目分类" value="深层清洁" />
+          <ListTips item="销售价" value="&yen; 256.28" />
+          <ListTips item="优惠券" value="-&yen; 2.00" />
+          <ListTips isTwoSide item="实收款" value="-&yen; 8800.00" />
+        </ListWrapper>
+        <ListWrapper>
+          <ListTitle leftText="退款申请" />
+          <ListContent isFirstList item="是否已接受服务" value="是" />
+          <ListContent item="退款原因" value="无条件退款" />
+          <ListContent item="退款金额" isMarked value="&yen; 0.00(全额)" />
+          <ListContent item="备注" value="跟想象中的效果差很多" />
+        </ListWrapper>
+        <ListWrapper>
+          <ListTitle leftText="退款审核" />
+          <ListContent item="商户审核" isFirstList isMarked value="不通过" />
+          <ListContent item="拒绝原因" lineNumber={10} value="开了几克拉数据库里的就开了" />
+          <ListContent item="平台审核" isMarked value="不通过" />
+          <ListContent item="拒绝原因" lineNumber={10} value="lkajksldjklasjdlkhjasdlkjkallk" />
+        </ListWrapper>
+        <ListWrapper>
+          <ListTitle leftText="服务记录 (3/3)" />
+          {this.state.recordList.map((item, index)=> this._renderServiceRecord(item, index))}
+          <TouchableHighlight style={{alignItems: 'center', justifyContent: 'center', height: 45}}>
+            <Text style={{fontSize: 14, color: "#999"}}>查看更多  &gt;</Text>
+          </TouchableHighlight>
+        </ListWrapper>
+        <ListWrapper>
+          <ListTitle leftText="订单信息" />
+          <ListContent isFirstList item="订单编号" value="2017-02-02 23:00:00" />
+          <ListContent item="创建时间" value="2017-02-02 23:00:00" />
+          <ListContent item="取消时间" value="2017-02-02 23:00:00" />
+        </ListWrapper>
       </ScrollView>
     )
   }
@@ -93,7 +157,8 @@ const styles = StyleSheet.create({
   row_center: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-     padding: 10,
+    padding: 10,
+    // paddingTop: 0,
   },
   borderB: {
     borderStyle: "solid",

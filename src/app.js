@@ -18,6 +18,9 @@ import {
   IndexPage,
   DevicesData,
   OrderDetail,
+  CustomerManager,
+  CustomDetail,
+  Settings,
 } from "./views";
 import { BORDER_COLOR } from "../globalconfig";
 
@@ -37,9 +40,12 @@ const YmlMerchants = StackNavigator({
   },
   DevicesData: {screen: DevicesData},
   OrderDetail: {screen: OrderDetail},
+  CustomerManager: {screen: CustomerManager},
+  CustomDetail: {screen: CustomDetail},
+  Settings: {screen: Settings},
   Test: { screen: Test },
 }, {
-  initialRouteName: "OrderDetail",
+  initialRouteName: "Settings",
   navigationOptions: {
     gesturesEnabled: true,
     headerStyle: {
