@@ -9,6 +9,13 @@ export { default as CustomDetail } from "./store/customerdetail";
 export { default as Devices } from "./device/devices";
 export { default as DevicesData } from "./device/devicesData";
 export { default as Settings } from "./device/settings";
+export { default as MyDevices } from "./device/mydevices";
+
+// 个人下文件
+export { default as ValiPassword } from './personal/valipassword';
+export { default as FindPassword } from './personal/findpassword';
+export { default as Login } from "./personal/login";
+export { default as MessageCenter } from "./personal/messagecenter";
 
 // 首页
 export { default as IndexPage } from "./indexpage";
