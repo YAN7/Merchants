@@ -35,6 +35,9 @@ const TabA = ()=> (
     </View>
   </TouchableHighlight>
 )
+TabA.navigationOptions = {
+  tabBarLabel: "待服务",
+}
 
 // const title={title: "hahaha"}
 
@@ -44,6 +47,7 @@ const NoItemA = ({title})=> (
     <Text>暂无{title.title}项目</Text>
   </View>
 )
+
 
 // const TabB = ()=> (
 //
@@ -62,32 +66,24 @@ class TabB extends Component {
 const TabC = ()=> (
   <Text>tabC</Text>
 )
+
+TabC.navigationOptions = {
+  tabBarLabel: "服务完成",
+}
+
 const TabD = ()=> (
   <Text>tabD</Text>
 )
 
+TabD.navigationOptions = {
+  tabBarLabel: "退款/售后",
+}
+
 const OrderManager = TabNavigator({
-  tabA: {
-    screen: TabA,
-    navigationOptions: {
-      tabBarLabel: "待服务",
-    }
-  },
-  tabB: {
-    screen: TabB,
-  },
-  tabC: {
-    screen: TabC,
-    navigationOptions: {
-      tabBarLabel: "服务完成",
-    }
-  },
-  tabD: {
-    screen: TabD,
-    navigationOptions: {
-      tabBarLabel: '退款/售后',
-    }
-  },
+  tabA: {screen: TabA,},
+  tabB: {screen: TabB,},
+  tabC: {screen: TabC,},
+  tabD: {screen: TabD,},
 }, {
   tabBarPosition: 'top',
   tabBarOptions: {
@@ -106,6 +102,8 @@ const OrderManager = TabNavigator({
     }
   },
   navigationOptions: {
+    title: "订单管理",
+    
   }
 })
 
@@ -128,7 +126,7 @@ const styles = StyleSheet.create({
   },
   borderB: {
     borderStyle: "solid",
-    borderBottomWidth: SCREEN_PIXELRADIO,
+    borderBottomWidth: 1/SCREEN_PIXELRADIO,
     borderBottomColor: BORDER_COLOR,
   }
 })
