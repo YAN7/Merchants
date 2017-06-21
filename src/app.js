@@ -26,39 +26,43 @@ import {
   MyDevices,
   Login,
   MessageCenter,
+  Balance,
+  Recharge,
+  RechargeSuccess,
+  ServiceRecord,
+  AssistantManager,
+  AddAssistant,
 } from "./views";
 import { BORDER_COLOR } from "../globalconfig";
 
 const YmlMerchants = StackNavigator({
-  IndexPage: {
-    screen: IndexPage,
-    navigationOptions: {
-      header: null,
-    }
-  },
-  OrderManager: {
-    screen: OrderManager,
-    headerTintColor: 'red',
-    navigationOptions: {
-      title: "订单管理",
-    }
-  },
+  IndexPage: {screen: IndexPage,},
+  OrderManager: {screen: OrderManager,},
   DevicesData: {screen: DevicesData},
   OrderDetail: {screen: OrderDetail},
   CustomerManager: {screen: CustomerManager},
   CustomDetail: {screen: CustomDetail},
   Settings: {screen: Settings},
-  ValiPassword: { screen: ValiPassword },
-  FindPassword: { screen: FindPassword },
-  MyDevices: { screen: MyDevices },
-  Login: { screen: Login },
-  MessageCenter: { screen: MessageCenter },
+  ValiPassword: {screen: ValiPassword},
+  FindPassword: {screen: FindPassword},
+  MyDevices: {screen: MyDevices},
+  Login: {screen: Login },
+  MessageCenter: {screen: MessageCenter},
+  Balance: {screen: Balance},
+  Recharge: {screen: Recharge},
+  RechargeSuccess: {screen: RechargeSuccess},
+  ServiceRecord: {screen: ServiceRecord},
+  AssistantManager: {screen: AssistantManager},
+  AddAssistant: {screen: AddAssistant},
 }, {
-  initialRouteName: "MessageCenter",
+  initialRouteName: 'IndexPage',
   navigationOptions: {
     gesturesEnabled: true,
+    headerTitleStyle: {
+      fontWeight: '100',
+    },
     headerStyle: {
-      height: 44,
+      // height: 44,
       elevation: 0,
       shadowColor: 'transparent',
       borderColor: BORDER_COLOR,

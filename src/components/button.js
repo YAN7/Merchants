@@ -56,7 +56,12 @@ const lightTextStyle = {
 const Button = ({ handlePress, disabled, textStyle, style, text, type, activeOpacity, image, isLoading }) => {
   //如果是禁用状态的话背景色为固定
   let disabledButtonStyle = {};
+  let disabledTextStyle = {}
   if (disabled) {disabledButtonStyle.backgroundColor = '#8dcef8';}
+  if (disabled && type==='light') {
+    disabledButtonStyle.backgroundColor = 'transparent';
+    disabledTextStyle.color = '#8dcef8';
+  }
 
   //  根据type设置默认样式
   let _buttonStyle, _textStyle;
@@ -79,14 +84,14 @@ const Button = ({ handlePress, disabled, textStyle, style, text, type, activeOpa
   }
   return (
     <TouchableOpacity
-      style={[_buttonStyle,style,disabledButtonStyle]}
+      style={[_buttonStyle, style, disabledButtonStyle]}
       onPress={isLoading ? null : handlePress}
       disabled={disabled}
       activeOpacity={activeOpacity}
     >
       {!isLoading && image ? image : null}
       {!isLoading && image ? <View style={{width:5}}></View> : null}
-      {!isLoading ? <Text style={[_textStyle,textStyle]}>{text}</Text> : null}
+      {!isLoading ? <Text style={[_textStyle, textStyle, disabledTextStyle]}>{text}</Text> : null}
       {isLoading ? <ActivityIndicator size={'small'} color='#fff'/> : null}
     </TouchableOpacity>
   )};
