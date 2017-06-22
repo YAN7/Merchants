@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   Button,
+  TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
 import LinearGradient from 'react-native-linear-gradient';
@@ -21,9 +22,13 @@ export default class Store extends Component {
         {/* <NoItem {...title}/> */}
         <LinearGradient locations={[0, 0.8]} colors={['#82dcf3', '#3eadf3']} style={styles.header}>
           <View style={styles.storename}>
-            <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_nav_btn_back.pngstore_settings_icon.png")}/>
+            <TouchableOpacity onPress={()=> navigation.navigate('Settings')}>
+              <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_nav_btn_back.pngstore_settings_icon.png")}/>
+            </TouchableOpacity>
             <Text style={styles.store_text}>天河时尚医美店</Text>
-            <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_message_icon.png")} />
+            <TouchableOpacity onPress={()=> navigation.navigate('MessageCenter')}>
+              <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_message_icon.png")} />
+            </TouchableOpacity>
           </View>
           <View style={styles.turnover}>
             <View style={styles.turnover_today}>
@@ -55,7 +60,13 @@ export default class Store extends Component {
             <Image style={{width: 40, height: 40}} source={require("../../static/img/store_customer_icon.png")}/>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight underlayColor="rgb(210, 230,255)"  activeOpacity={0.5}  style={styles.order_manager} activeOpacity={0.8}>
+        <TouchableHighlight
+          underlayColor="rgb(210, 230,255)"
+          activeOpacity={0.5}
+          style={styles.order_manager}
+          activeOpacity={0.8}
+          onPress={()=> {navigation.navigate("CustomerManager")}}
+        >
           <View style={[styles.rowdisplay, styles.order_manager_content]}>
             <View style={{flex: 1}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>

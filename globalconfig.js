@@ -10,5 +10,12 @@ export const SCREEN_HEIGHT = Dimensions.get('window').height;
 export const SCREEN_PIXELRADIO = PixelRatio.get();
 export const PLATFORM = Platform.OS;
 
+// 底部边框
+export const BORDER_BOTTOM = {
+  borderStyle: 'solid',
+  borderBottomWidth: 1/SCREEN_PIXELRADIO,
+  borderBottomColor: BORDER_COLOR,
+}
+
 // 域名相关
 const BASE_URL = "https://";

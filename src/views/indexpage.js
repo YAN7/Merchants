@@ -33,6 +33,9 @@ const IndexPage = TabNavigator({
     }
   }
 }, {
+  navigationOptions: {
+    header: null,
+  },
   tabBarComponent:TabBarBottom,
   tabBarPosition: 'bottom',
   swipeEnabled: false,

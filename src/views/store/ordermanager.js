@@ -18,8 +18,8 @@ import { NoItem } from '../../components/NoItem';
 
 
 
-const TabA = ()=> (
-  <TouchableHighlight style={styles.container}>
+const TabA = ({navigation})=> (
+  <TouchableHighlight style={styles.container} onPress={()=> {navigation.navigate('OrderDetail')}} >
     <View>
       <View style={[styles.borderB, styles.header]}>
         <Text numberOfLines={1} style={{width: 120}}>asdssdasd</Text>
@@ -35,6 +35,9 @@ const TabA = ()=> (
     </View>
   </TouchableHighlight>
 )
+TabA.navigationOptions = {
+  tabBarLabel: "待服务",
+}
 
 // const title={title: "hahaha"}
 
@@ -44,6 +47,7 @@ const NoItemA = ({title})=> (
     <Text>暂无{title.title}项目</Text>
   </View>
 )
+
 
 // const TabB = ()=> (
 //
@@ -62,32 +66,24 @@ class TabB extends Component {
 const TabC = ()=> (
   <Text>tabC</Text>
 )
+
+TabC.navigationOptions = {
+  tabBarLabel: "服务完成",
+}
+
 const TabD = ()=> (
   <Text>tabD</Text>
 )
 
+TabD.navigationOptions = {
+  tabBarLabel: "退款/售后",
+}
+
 const OrderManager = TabNavigator({
-  tabA: {
-    screen: TabA,
-    navigationOptions: {
-      tabBarLabel: "待服务",
-    }
-  },
-  tabB: {
-    screen: TabB,
-  },
-  tabC: {
-    screen: TabC,
-    navigationOptions: {
-      tabBarLabel: "服务完成",
-    }
-  },
-  tabD: {
-    screen: TabD,
-    navigationOptions: {
-      tabBarLabel: '退款/售后',
-    }
-  },
+  tabA: {screen: TabA,},
+  tabB: {screen: TabB,},
+  tabC: {screen: TabC,},
+  tabD: {screen: TabD,},
 }, {
   tabBarPosition: 'top',
   tabBarComponent: TabBarTop,
@@ -107,6 +103,7 @@ const OrderManager = TabNavigator({
     }
   },
   navigationOptions: {
+    title: "订单管理",
   }
 })
 
