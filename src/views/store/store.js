@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 180,
-    backgroundColor: APP_COLOR,
+    backgroundColor: 'transparent',
     alignItems: "center",
   },
   storename: {
@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
     height: 100,
     paddingHorizontal: 18,
     borderRadius: 5,
-    borderColor: APP_COLOR,
-    shadowColor: APP_COLOR,
+    // borderColor: APP_COLOR,
+    // shadowColor: APP_COLOR,
     elevation: 4,
-    shadowOffset: {width: 0, height: 0},
-    shadowColor: APP_COLOR,
-    shadowOpacity: 1,
-    shadowRadius: 5
+    // shadowOffset: {width: 0, height: 0},
+    // shadowColor: APP_COLOR,
+    // shadowOpacity: 1,
+    // shadowRadius: 5
   },
   order_manager_content: {
     height: 100,

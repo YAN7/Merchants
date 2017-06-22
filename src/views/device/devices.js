@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import LinearGradient from 'react-native-linear-gradient';
 
-import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR } from "../../../globalconfig";
+import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR, PLATFORM } from "../../../globalconfig";
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -38,13 +38,14 @@ export default class Devices extends Component {
   }
   renderRecord = (list)=> (
     <View key={list.key} style={styles.list_wrapper}>
-      <Image source={{uri: list.img}} style={{width: 50, height: 50,marginRight: 10, marginLeft: 18}} />
+      <Image source={{uri: list.img}} style={{width: 50, height: 50,marginHorizontal: 18}} />
       <View style={[styles.borderB,{flex: 1, flexDirection: 'row', justifyContent: "space-between", paddingBottom: 15}]}>
         <View style={{flex: 1, justifyContent: 'center', }}>
           <Text style={{fontSize: 15, color: "#333"}}>{list.title}</Text>
           <Text style={{fontSize: 12, color: "#666", marginTop: 5}}>{list.order}</Text>
         </View>
         <Text style={{width: 90, fontSize: 13, color: "#999", paddingTop: 4}}>时长: {list.time}</Text>
+        <Text>{PLATFORM}</Text>
       </View>
     </View>
   )
@@ -52,10 +53,10 @@ export default class Devices extends Component {
     const { recordList } = this.state;
     return (
       <View>
-        <View style={styles.title}>
-          <Image style={{width: 20, height: 20, marginLeft: 7}} source={require("./../../static/img/store_settings1_icon.png")}/>
+        <View style={[styles.borderB, styles.title]}>
+          <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_settings1_icon.png")}/>
           <Text style={styles.title_text}>天河时尚医美店</Text>
-          <Image style={{width: 20, height: 20, marginRight: 7}} source={require("./../../static/img/store_message1_icon.png")} />
+          <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_message1_icon.png")} />
         </View>
         <TouchableHighlight style={{backgroundColor: '#fff'}}>
           <View style={[styles.rowdisplay, styles.borderB, { justifyContent: 'space-between', height: 40, paddingHorizontal: 12 }]}>
@@ -97,10 +98,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'center',
     height: 45,
+    paddingHorizontal: 7,
     backgroundColor: '#fff',
-    borderStyle: 'solid',
-    borderBottomColor: BORDER_COLOR,
-    borderBottomWidth: 1/SCREEN_PIXELRADIO,
   },
   title_text: {
     flex: 1,

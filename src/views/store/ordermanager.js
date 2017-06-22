@@ -7,7 +7,7 @@ import {
   StyleSheet,
   TouchableHighlight,
 } from "react-native";
-import { TabNavigator, TabBarBottom } from "react-navigation";
+import { TabNavigator, TabBarBottom, TabBarTop } from "react-navigation";
 
 import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO } from "../../../globalconfig";
 import { NoItem } from '../../components/NoItem';
@@ -90,6 +90,7 @@ const OrderManager = TabNavigator({
   },
 }, {
   tabBarPosition: 'top',
+  tabBarComponent: TabBarTop,
   tabBarOptions: {
     activeTintColor: APP_COLOR,
     inactiveTintColor: '#4a4a4a',
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   },
   borderB: {
     borderStyle: "solid",
-    borderBottomWidth: SCREEN_PIXELRADIO,
+    borderBottomWidth: 1/SCREEN_PIXELRADIO,
     borderBottomColor: BORDER_COLOR,
   }
 })

@@ -39,7 +39,7 @@ const YmlMerchants = StackNavigator({
   OrderDetail: {screen: OrderDetail},
   Test: { screen: Test },
 }, {
-  initialRouteName: "OrderDetail",
+  // initialRouteName: "OrderDetail",
   navigationOptions: {
     gesturesEnabled: true,
     headerStyle: {
