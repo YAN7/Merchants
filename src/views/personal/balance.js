@@ -34,7 +34,7 @@ class Balance extends Component {
           <Text style={{fontSize: 40, color: '#fff', marginTop: 12}}>2563.00</Text>
         </View>
         <View style={{paddingHorizontal: 10, backgroundColor: BG_COLOR }}>
-          <ListItem handlePress={()=> navigation.navigate('Recharge') value="充值" image={require("../../static/img/store_recharge_icon.png")} />
+          <ListItem handlePress={()=> navigation.navigate('Recharge')} value="充值" image={require("../../static/img/store_recharge_icon.png")} />
           <ListItem handlePress={()=> navigation.navigate('')} value="账单明细" image={require("../../static/img/store_detail_icon.png")} />
         </View>
       </View>

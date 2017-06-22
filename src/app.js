@@ -53,9 +53,14 @@ const YmlMerchants = StackNavigator({
   RechargeSuccess: {screen: RechargeSuccess},
   ServiceRecord: {screen: ServiceRecord},
   AssistantManager: {screen: AssistantManager},
+<<<<<<< HEAD
   AddAssistant: {screen: AddAssistant},
 }, {
   initialRouteName: 'IndexPage',
+=======
+}, {
+  initialRouteName: 'AssistantManager',
+>>>>>>> e21ef02d7f671bf7707822b7d431afd6cfef3728
   navigationOptions: {
     gesturesEnabled: true,
     headerTitleStyle: {

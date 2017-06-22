@@ -33,5 +33,3 @@
 	// 改为
 	const asset = require('./assets/return_icon.png');
 	``
-
-

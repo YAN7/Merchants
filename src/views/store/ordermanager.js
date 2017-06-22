@@ -103,7 +103,6 @@ const OrderManager = TabNavigator({
   },
   navigationOptions: {
     title: "订单管理",
-
   }
 })
 
