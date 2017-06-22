@@ -14,7 +14,6 @@ const ListItem = ({ value, image, handlePress }) => (
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       <Image style={{marginRight: 6}} source={image} />
       <Text>{value}</Text>
-      hehe
     </View>
     <Text>&gt;</Text>
   </TouchableOpacity>
