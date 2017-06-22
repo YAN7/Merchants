@@ -18,8 +18,8 @@ import { NoItem } from '../../components/NoItem';
 
 
 
-const TabA = ()=> (
-  <TouchableHighlight style={styles.container}>
+const TabA = ({navigation})=> (
+  <TouchableHighlight style={styles.container} onPress={()=> {navigation.navigate('OrderDetail')}} >
     <View>
       <View style={[styles.borderB, styles.header]}>
         <Text numberOfLines={1} style={{width: 120}}>asdssdasd</Text>
@@ -103,7 +103,7 @@ const OrderManager = TabNavigator({
   },
   navigationOptions: {
     title: "订单管理",
-    
+
   }
 })
 

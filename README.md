@@ -14,8 +14,12 @@
 	> 在node_modules=> react-navigation=> src=> views=> Header.js 第327行
 
 	```JavaScript
+	left: TITLE_OFFSET,
+	right: TITLE_OFFSET,
 	alignItems:' Platform.OS === 'ios' ? 'center' : 'flex-start''
 	// 改为
+	left: 0,
+	right: 0,
 	alignItems: 'center'
 	```
 
@@ -29,3 +33,5 @@
 	// 改为
 	const asset = require('./assets/return_icon.png');
 	``
+
+

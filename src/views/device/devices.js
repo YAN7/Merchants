@@ -51,12 +51,17 @@ export default class Devices extends Component {
   )
   render() {
     const { recordList } = this.state;
+    const { navigation } = this.props;
     return (
       <View>
         <View style={styles.title}>
-          <Image style={{width: 20, height: 20, marginLeft: 7}} source={require("./../../static/img/store_settings1_icon.png")}/>
+          <TouchableOpacity onPress={()=> navigation.navigate('Settings')}>
+            <Image style={{width: 20, height: 20, marginLeft: 7}} source={require("./../../static/img/store_settings1_icon.png")}/>
+          </TouchableOpacity>
           <Text style={styles.title_text}>天河时尚医美店</Text>
-          <Image style={{width: 20, height: 20, marginRight: 7}} source={require("./../../static/img/store_message1_icon.png")} />
+          <TouchableOpacity onPress={()=> navigation.navigate('MessageCenter')}>
+            <Image style={{width: 20, height: 20, marginRight: 7}} source={require("./../../static/img/store_message1_icon.png")} />
+          </TouchableOpacity>
         </View>
         {/* <TouchableHighlight style={{backgroundColor: '#fff'}}>
           <View style={[styles.rowdisplay, styles.borderB, { justifyContent: 'space-between', height: 40, paddingHorizontal: 12 }]}>
@@ -65,7 +70,7 @@ export default class Devices extends Component {
           </View>
         </TouchableHighlight> */}
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', backgroundColor: BG_COLOR, height: 65}}>
-          <TouchableOpacity style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
+          <TouchableOpacity onPress={()=> navigation.navigate('Balance')} style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
             <Text style={{fontSize: 12, color: '#333'}}>我的余额</Text>
             <Text style={{fontSize: 18, color: APP_COLOR}}>3000.00</Text>
           </TouchableOpacity>

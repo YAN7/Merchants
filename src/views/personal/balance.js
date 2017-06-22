@@ -14,6 +14,7 @@ const ListItem = ({ value, image, handlePress }) => (
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       <Image style={{marginRight: 6}} source={image} />
       <Text>{value}</Text>
+      hehe
     </View>
     <Text>&gt;</Text>
   </TouchableOpacity>
@@ -24,6 +25,9 @@ class Balance extends Component {
     title: '余额'
   }
   render() {
+
+    const { navigation } = this.props;
+
     return (
       <View>
         <View style ={{height: 162, backgroundColor: '#3eadf3', alignItems: 'center'}}>
@@ -31,8 +35,8 @@ class Balance extends Component {
           <Text style={{fontSize: 40, color: '#fff', marginTop: 12}}>2563.00</Text>
         </View>
         <View style={{paddingHorizontal: 10, backgroundColor: BG_COLOR }}>
-          <ListItem value="充值" image={require("../../static/img/store_recharge_icon.png")} />
-          <ListItem value="账单明细" image={require("../../static/img/store_detail_icon.png")} />
+          <ListItem handlePress={()=> navigation.navigate('Recharge') value="充值" image={require("../../static/img/store_recharge_icon.png")} />
+          <ListItem handlePress={()=> navigation.navigate('')} value="账单明细" image={require("../../static/img/store_detail_icon.png")} />
         </View>
       </View>
     )

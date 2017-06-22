@@ -51,6 +51,7 @@ class CustomDetail extends Component {
         } */}
         <FlatList
           data={listData}
+          keyExtractor={(item, index)=> item.id}
           renderItem={({item})=> this._renderList({item})}
         />
       </View>
