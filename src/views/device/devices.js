@@ -70,12 +70,16 @@ export default class Devices extends Component {
           </View>
         </TouchableHighlight> */}
         <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', backgroundColor: BG_COLOR, height: 65}}>
-          <TouchableOpacity onPress={()=> navigation.navigate('Balance')} style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
+          <TouchableOpacity
+            onPress={()=> navigation.navigate('Balance')}
+            style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
             <Text style={{fontSize: 12, color: '#333'}}>我的余额</Text>
             <Text style={{fontSize: 18, color: APP_COLOR}}>3000.00</Text>
           </TouchableOpacity>
           <View style={{ backgroundColor: BORDER_COLOR, width: 1/SCREEN_PIXELRADIO, height: 35}} />
-          <TouchableOpacity style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
+          <TouchableOpacity 
+            onPress={()=> navigation.navigate("MyDevices")}
+            style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
             <Text style={{fontSize: 12, color: '#333'}}>我的设备</Text>
             <Text style={{fontSize: 18, color: APP_COLOR}}>3</Text>
           </TouchableOpacity>
