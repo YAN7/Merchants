@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import { Button } from "../../components";
+import { APP_COLOR, BORDER_BOTTOM, BG_COLOR } from "../../../globalconfig";
 
 class EditCustomerRemark extends Component {
   static navigationOptions = {
@@ -18,10 +19,14 @@ class EditCustomerRemark extends Component {
 
   render() {
     return (
-      <TextInput
-        style={{padding: 5}}
-        // defaultValue={this.state.name}
-      />
+      <View style={{flex: 1, backgroundColor: BG_COLOR, paddingHorizontal: 10, paddingTop: 80}}>
+        <TextInput
+          style={[BORDER_BOTTOM, { padding: 10, borderBottomWidth: 1 }]}
+          underlineColorAndroid = "transparent"
+          selectionColor={ APP_COLOR }
+        />
+        <Button text="保存" style={{marginTop: 60}} />
+      </View>
     )
   }
 }

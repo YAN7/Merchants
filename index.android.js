@@ -5,21 +5,23 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 
 import App from "./src/app";
+import AppReducers  from "./src/reducers";
+
+const store = createStore(AppReducers);
 
 export default class YmlMerchants extends Component {
   render() {
     return (
-      <View>
+      <Provider store={store}>
         <App />
-      </View>
+      </Provider>
     );
   }
 }
+
+AppRegistry.registerComponent('YmlMerchants', () => YmlMerchants);

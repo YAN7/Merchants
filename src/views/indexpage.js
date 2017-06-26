@@ -2,12 +2,12 @@ import React, { Component } from "react";
 
 import { Image } from "react-native";
 
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabNavigator, TabBarBottom } from 'react-navigation';
 
-import {
-  Store,
-  Devices,
-} from "./index";
+import { Store, Devices } from "./index";
+import { BG_COLOR } from "../../globalconfig";
+
+
 
 const IndexPage = TabNavigator({
   Store: {
@@ -44,6 +44,9 @@ const IndexPage = TabNavigator({
   tabBarOptions: {
      activeTintColor: '#3EADF3',
      inactiveTintColor: '#999',
+     style: {
+       backgroundColor: BG_COLOR,
+     }
   },
   labelStyle: {
     indicatorStyle: {

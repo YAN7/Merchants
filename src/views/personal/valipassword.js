@@ -6,6 +6,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
+import { connect } from "react-redux";
 
 import { BG_COLOR, BORDER_COLOR, APP_COLOR, SCREEN_PIXELRADIO } from "../../../globalconfig";
 import { Button } from "../../components";
@@ -48,4 +49,5 @@ class ValiPassword extends Component {
   }
 }
 
-export default ValiPassword;
+export default connect()(ValiPassword);
+// export default ValiPassword;

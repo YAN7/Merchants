@@ -11,13 +11,17 @@ import {
 } from "react-native";
 import LinearGradient from 'react-native-linear-gradient';
 
-import { SCREEN_PIXELRADIO, APP_COLOR } from "../../../globalconfig";
+import { SCREEN_PIXELRADIO, APP_COLOR, BG_COLOR } from "../../../globalconfig";
 import { NoItem } from '../../components';
 
 /*
  * number 是订单或者客户的数量
  *
  */
+
+
+
+
 const CardItem = ({item, note, number, image, handlePress})=> (
   <TouchableHighlight
     underlayColor="rgb(210, 230,255)"
@@ -41,11 +45,12 @@ const CardItem = ({item, note, number, image, handlePress})=> (
 )
 
 export default class Store extends Component {
+
   render() {
     const { navigation } = this.props;
     const title = { title: "123" }
     return (
-      <ScrollView>
+      <ScrollView style={{flex: 1, backgroundColor: BG_COLOR}}>
         {/* <NoItem {...title}/> */}
         <LinearGradient locations={[0, 0.8]} colors={['#82dcf3', '#3eadf3']} style={styles.header}>
           <View style={styles.storename}>
@@ -157,7 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: APP_COLOR,
     shadowColor: APP_COLOR,
-    elevation: 4,
+    elevation: 1,
     shadowOffset: {width: 0, height: 0},
     shadowColor: APP_COLOR,
     shadowOpacity: 1,
