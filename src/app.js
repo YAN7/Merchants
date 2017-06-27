@@ -1,68 +1,64 @@
 import React, { Component } from "react";
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
-
-import { TabBarItem } from "./components";
 import {
-  Store,
-  Equipment,
   Test,
-  OrderManager,
-  IndexPage,
-  DevicesData,
-  OrderDetail,
-  CustomerManager,
-  CustomDetail,
-  Settings,
-  ValiPassword,
-  FindPassword,
-  MyDevices,
+  Store,
   Login,
-  MessageCenter,
   Balance,
   Recharge,
-  RechargeSuccess,
-  ServiceRecord,
-  AssistantManager,
+  Settings,
+  IndexPage,
+  MyDevices,
+  Equipment,
+  BillDetail,
+  DevicesData,
+  OrderDetail,
   AddAssistant,
+  OrderManager,
+  CustomDetail,
+  ValiPassword,
+  FindPassword,
+  MessageCenter,
+  ServiceRecord,
+  RechargeSuccess,
+  CustomerManager,
+  AssistantManager,
+  EditCustomerRemark,
+  DevicesInstructionList,
 } from "./views";
 import { BORDER_COLOR } from "../globalconfig";
 
-const YmlMerchants = StackNavigator({
-  IndexPage: {screen: IndexPage,},
-  OrderManager: {screen: OrderManager,},
-  DevicesData: {screen: DevicesData},
-  OrderDetail: {screen: OrderDetail},
-  CustomerManager: {screen: CustomerManager},
-  CustomDetail: {screen: CustomDetail},
-  Settings: {screen: Settings},
-  ValiPassword: {screen: ValiPassword},
-  FindPassword: {screen: FindPassword},
-  MyDevices: {screen: MyDevices},
-  Login: {screen: Login },
-  MessageCenter: {screen: MessageCenter},
-  Balance: {screen: Balance},
-  Recharge: {screen: Recharge},
-  RechargeSuccess: {screen: RechargeSuccess},
-  ServiceRecord: {screen: ServiceRecord},
-  AssistantManager: {screen: AssistantManager},
-  AddAssistant: {screen: AddAssistant},
+const App = StackNavigator({
+  Test:                   { screen: Test },
+  Login:                  { screen: Login },
+  Balance:                { screen: Balance },
+  Settings:               { screen: Settings },
+  Recharge:               { screen: Recharge },
+  MyDevices:              { screen: MyDevices },
+  IndexPage:              { screen: IndexPage },
+  BillDetail:             { screen: BillDetail },
+  DevicesData:            { screen: DevicesData },
+  OrderDetail:            { screen: OrderDetail },
+  CustomDetail:           { screen: CustomDetail },
+  ValiPassword:           { screen: ValiPassword },
+  AddAssistant:           { screen: AddAssistant },
+  FindPassword:           { screen: FindPassword },
+  OrderManager:           { screen: OrderManager },
+  MessageCenter:          { screen: MessageCenter },
+  ServiceRecord:          { screen: ServiceRecord },
+  RechargeSuccess:        { screen: RechargeSuccess },
+  CustomerManager:        { screen: CustomerManager },
+  AssistantManager:       { screen: AssistantManager },
+  EditCustomerRemark:     { screen: EditCustomerRemark },
+  DevicesInstructionList: { screen: DevicesInstructionList },
 }, {
-  initialRouteName: 'IndexPage',
+  initialRouteName: 'ValiPassword',
   navigationOptions: {
     gesturesEnabled: true,
-    headerTitleStyle: {
-      fontWeight: '100',
-    },
+    headerTitleStyle: { fontWeight: '100' },
     headerStyle: {
-      // height: 44,
       elevation: 0,
       shadowColor: 'transparent',
       borderColor: BORDER_COLOR,
@@ -71,4 +67,6 @@ const YmlMerchants = StackNavigator({
   }
 })
 
-AppRegistry.registerComponent('YmlMerchants', () => YmlMerchants);
+export default App;
+
+// AppRegistry.registerComponent('YmlMerchants', () => YmlMerchants);
