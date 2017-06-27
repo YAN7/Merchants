@@ -46,7 +46,6 @@ export default class Devices extends Component {
           <Text style={{fontSize: 12, color: "#666", marginTop: 5}}>{list.order}</Text>
         </View>
         <Text style={{width: 90, fontSize: 13, color: "#999", paddingTop: 4}}>时长: {list.time}</Text>
-        <Text>{PLATFORM}</Text>
       </View>
     </View>
   )
@@ -119,7 +118,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    height: 45,
+    height: 55,
+    paddingTop: 10,
     paddingHorizontal: 7,
     backgroundColor: '#fff',
   },
