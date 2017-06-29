@@ -57,8 +57,8 @@ class Login extends Component {
       storage.save({
         key: 'userInfo',
         data: re.data,
-      })
-      this.props.navigation.navigate("IndexPage");
+      })then(()=> this.props.navigation.navigate("IndexPage"))
+
     }, null, ()=> {
       this.setState({isLoading: false})
     })

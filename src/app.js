@@ -58,7 +58,7 @@ const App = StackNavigator({
   OperationInstruction:   { screen: OperationInstruction },
   DevicesInstructionList: { screen: DevicesInstructionList },
 }, {
-  initialRouteName: 'AddNewDevices',
+  initialRouteName: 'Login',
   navigationOptions: {
     gesturesEnabled: true,
     headerTitleStyle: { fontWeight: '100' },

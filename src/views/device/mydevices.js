@@ -11,13 +11,21 @@ import { Button } from "../../components";
 import { BG_COLOR, APP_COLOR, BORDER_BOTTOM } from '../../globalconfig';
 
 class MyDevices extends Component {
-  static navigationOptions = {
-    title: '我的设备',
-    headerRight: <Button type="light" text="新增" />,
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      navigate: this.props.navigation.navigate,
+    }
+  }
+
+  static navigationOptions = ({navigation})=> ({
+    title: "我的设备",
+    headerRight: <Button handlePress={()=> navigation.navigate("AddNewDevices")} type="light" text="新增" />,
     headerTitleStyle: {
       fontWeight: '200',
     }
-  }
+  })
 
   _renderList = ()=> (
     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: BG_COLOR, height: 60, paddingLeft: 15}}>
