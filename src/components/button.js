@@ -6,7 +6,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import { APP_COLOR } from "../../globalconfig";
+import { APP_COLOR } from "../globalconfig";
 
 const propTypes = {
   onPress: PropTypes.func,

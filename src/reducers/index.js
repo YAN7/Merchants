@@ -1,8 +1,8 @@
-const AppReducers = (state = {isLoading: false}, action)=> {
+const AppReducers = (state = {isLoading: true}, action)=> {
   switch (action.type) {
-    case "HAHA":
+    case "SET_LOADING":
       return {
-        isLoading: true,
+        isLoading: action.isLoading,
       }
     default:
       return state;

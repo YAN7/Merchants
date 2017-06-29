@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { BG_COLOR, APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO } from '../../../globalconfig';
+import { BG_COLOR, APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO } from '../../globalconfig';
 import { Button } from '../../components';
 
 class AddAssistant extends Component {

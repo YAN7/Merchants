@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import { SCREEN_PIXELRADIO, BORDER_COLOR, BG_COLOR } from "../../../globalconfig";
+import { SCREEN_PIXELRADIO, BORDER_COLOR, BG_COLOR } from "../../globalconfig";
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 
 class CustomerManager extends Component {

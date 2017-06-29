@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR, BORDER_BOTTOM, BG_COLOR } from "../../../globalconfig";
+import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR, BORDER_BOTTOM, BG_COLOR } from "../../globalconfig";
 
 class DevicesInstructionList extends Component {
   static navigationOptions = {

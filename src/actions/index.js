@@ -1,4 +1,4 @@
-export const TEST = (test)=> ({
-  type: "HAHA",
-  isLoading: false,
+export const setLoading = (isLoading)=> ({
+  type: "SET_LOADING",
+  isLoading,
 })

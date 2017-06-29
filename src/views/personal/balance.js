@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { APP_COLOR, BG_COLOR, BORDER_BOTTOM } from '../../../globalconfig';
+import { APP_COLOR, BG_COLOR, BORDER_BOTTOM } from '../../globalconfig';
 
 const ListItem = ({ value, image, handlePress }) => (
   <TouchableOpacity onPress={handlePress} style={[BORDER_BOTTOM, {flexDirection: 'row', height: 51, alignItems: 'center', justifyContent: 'space-between'}]}>

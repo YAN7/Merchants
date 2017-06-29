@@ -6,7 +6,7 @@ import {
 } from "react-native";
 
 import { Button } from "../../components";
-import { APP_COLOR, BORDER_BOTTOM, BG_COLOR } from "../../../globalconfig";
+import { APP_COLOR, BORDER_BOTTOM, BG_COLOR } from "../../globalconfig";
 
 class EditCustomerRemark extends Component {
   static navigationOptions = {

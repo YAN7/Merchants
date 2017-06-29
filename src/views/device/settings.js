@@ -10,7 +10,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import { BORDER_BOTTOM, BG_COLOR, APP_COLOR } from "../../../globalconfig";
+import { BORDER_BOTTOM, BG_COLOR, APP_COLOR } from "../../globalconfig";
 import { Button } from "../../components";
 
 /*
@@ -46,7 +46,7 @@ class Settings extends Component {
         <ListItem item="修改绑定手机" value="18565082496" handlePress={()=> navigate('ValiPassword')} />
         <ListItem item="找回密码" isLast/>
         <ListItem item="设备操作说明" isFirst handlePress={()=> navigate("DevicesInstructionList")} />
-        <ListItem item="APP操作说明" isLast />
+        <ListItem item="APP操作说明" isLast handlePress={()=> navigate("OperationInstruction")} />
         <ListItem item="版本更新" value="有新版本" isFirst />
         <ListItem item="客服热线" value="0753-12385964" isLast handlePress={()=> Linking.openURL("tel: 10086")} />
         <Button style={{marginHorizontal: 10}} text="退出登录" />

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { NoItem, Button } from '../../components';
-import { BG_COLOR, BORDER_BOTTOM } from '../../../globalconfig';
+import { BG_COLOR, BORDER_BOTTOM } from '../../globalconfig';
 
 class AssistantManager extends Component {
   static navigationOptions = {

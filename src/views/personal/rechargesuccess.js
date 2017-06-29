@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { Button } from "../../components";
-import { BG_COLOR } from "../../../globalconfig";
+import { BG_COLOR } from "../../globalconfig";
 
 class RechargeSuccess extends Component {
   static navigationOptions = {

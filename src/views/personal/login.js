@@ -7,25 +7,27 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../../globalconfig";
+import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../globalconfig";
 import { Button } from "../../components";
+import Http from "../../utils/http2";
 
 const List = ({placeholder, type, value, handleTextChange})=> (
   <View style={styles.list_wrapper}>
     {
       type === "account"
-      ? <Image style={{marginHorizontal: 10}} source={require("../../static/img/login_user.png")} />
-      : <Image style={{marginHorizontal: 10}} source={require("../../static/img/login_password.png")} />
+      ? <Image style={[styles.borderR, {marginHorizontal: 10}]} source={require("../../static/img/login_user.png")} />
+      : <Image style={[styles.borderR, {marginHorizontal: 10}]} source={require("../../static/img/login_password.png")} />
     }
     <TextInput
       placeholder={placeholder}
       placeholderTextColor="#c3c3c3"
       selectionColor={APP_COLOR}
+      clearButtonMode="while-editing"
       underlineColorAndroid="transparent"
       secureTextEntry={ type === "account" ? false : true}
       value={value}
       onChangeText={handleTextChange}
-      style={[styles.borderL, {flex: 1, padding: 0, fontSize: 16, paddingLeft: 10}]}
+      style={{flex: 1, padding: 0, fontSize: 16, paddingLeft: 10, borderWidth: 0}}
      />
   </View>
 )
@@ -35,13 +37,33 @@ List.defaultProps = {
 }
 
 class Login extends Component {
+
   static navigationOptions = {
     header: null,
   }
+
   state = {
     account: '',
     pwd: '',
+    isLoading: false,
   }
+
+  login() {
+    this.setState({isLoading: true})
+    Http.post("/store/?method=auth.login", {
+      phone: this.state.account,
+      password: this.state.pwd,
+    }, (re)=> {
+      storage.save({
+        key: 'userInfo',
+        data: re.data,
+      })
+      this.props.navigation.navigate("IndexPage");
+    }, null, ()=> {
+      this.setState({isLoading: false})
+    })
+  }
+
   render() {
     const { account, pwd } = this.state;
     return (
@@ -66,6 +88,8 @@ class Login extends Component {
           type="default"
           text="登录"
           disabled={!account || !pwd}
+          isLoading={this.state.isLoading}
+          handlePress={()=> this.login()}
         />
       </View>
     )
@@ -73,10 +97,10 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  borderL: {
-    borderStyle: 'solid',
-    borderLeftWidth: 1/SCREEN_PIXELRADIO,
-    borderLeftColor: BORDER_COLOR,
+  borderR: {
+    // borderStyle: 'solid',
+    borderRightWidth: 1/SCREEN_PIXELRADIO,
+    borderColor: BORDER_COLOR,
   },
   list_wrapper: {
     flexDirection: 'row',

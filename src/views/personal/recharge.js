@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { APP_COLOR, BG_COLOR, BORDER_BOTTOM } from '../../../globalconfig';
+import { APP_COLOR, BG_COLOR, BORDER_BOTTOM } from '../../globalconfig';
 import { Button } from "../../components";
 
 const ListItem = ({ value, image, handlePress, selected }) => (

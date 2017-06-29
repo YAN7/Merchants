@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import LinearGradient from 'react-native-linear-gradient';
 
-import { SCREEN_PIXELRADIO, APP_COLOR, BG_COLOR } from "../../../globalconfig";
+import { SCREEN_PIXELRADIO, APP_COLOR, BG_COLOR, PLATFORM } from "../../globalconfig";
 import { NoItem } from '../../components';
 
 /*
@@ -20,14 +20,9 @@ import { NoItem } from '../../components';
  */
 
 
-
-
 const CardItem = ({item, note, number, image, handlePress})=> (
-  <TouchableHighlight
-    underlayColor="rgb(210, 230,255)"
-    activeOpacity={0.5}
+  <TouchableOpacity
     style={styles.order_manager}
-    activeOpacity={0.8}
     onPress={handlePress}>
     <View style={[styles.rowdisplay, styles.order_manager_content]}>
       <View style={{flex: 1}}>
@@ -41,10 +36,23 @@ const CardItem = ({item, note, number, image, handlePress})=> (
       </View>
       <Image style={{width: 60, height: 60}} source={ image }/>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
 )
 
 export default class Store extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      userInfo: {},
+    }
+  };
+
+  componentDidMount() {
+    storage.load({key: "userInfo"}).then(re=> {
+      this.setState({userInfo: re})
+    })
+  };
 
   render() {
     const { navigation } = this.props;
@@ -57,14 +65,14 @@ export default class Store extends Component {
             <TouchableOpacity onPress={()=> navigation.navigate('Settings')}>
               <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_nav_btn_back.pngstore_settings_icon.png")}/>
             </TouchableOpacity>
-            <Text style={styles.store_text}>天河时尚医美店</Text>
+            <Text numberOfLines={1} style={styles.store_text}>{this.state.userInfo.store_name}</Text>
             <TouchableOpacity onPress={()=> navigation.navigate('MessageCenter')}>
               <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_message_icon.png")} />
             </TouchableOpacity>
           </View>
           <View style={styles.turnover}>
             <View style={styles.turnover_today}>
-              <Text style={{fontSize: 36, color: "#fff"}}>22134.00</Text>
+              <Text style={{fontSize: 36, color: "#fff"}}>123.123</Text>
               <Text style={{fontSize: 14, color: "#fff"}}>今天营业额</Text>
             </View>
             <View style={styles.turnover_month}>
@@ -129,7 +137,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 7,
     height: 80/SCREEN_PIXELRADIO,
-    marginVertical: 15,
+    marginVertical: PLATFORM === "iOS" ? 25 : 15,
   },
   store_text: {
     flex: 1,
@@ -160,15 +168,13 @@ const styles = StyleSheet.create({
     height: 100,
     paddingHorizontal: 18,
     borderRadius: 5,
-    borderColor: APP_COLOR,
-    shadowColor: APP_COLOR,
+    shadowColor: "#3eadf3",
     elevation: 1,
-    shadowOffset: {width: 0, height: 0},
-    shadowColor: APP_COLOR,
-    shadowOpacity: 1,
-    shadowRadius: 5
+    shadowOffset: {width: 3, height: 3},
+    shadowOpacity: 0.2,
+    shadowRadius: 2
   },
   order_manager_content: {
     height: 100,
-  },
+  }
 })

@@ -5,7 +5,7 @@ import { Image } from "react-native";
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 import { Store, Devices } from "./index";
-import { BG_COLOR } from "../../globalconfig";
+import { BG_COLOR } from "../globalconfig";
 
 
 

@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import { BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO, BORDER_BOTTOM } from "../../../globalconfig";
+import { BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO, BORDER_BOTTOM } from "../../globalconfig";
 
 class CustomDetail extends Component {
 

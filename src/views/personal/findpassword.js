@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO, BORDER_BOTTOM } from "../../../globalconfig";
+import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO, BORDER_BOTTOM } from "../../globalconfig";
 import { Button } from "../../components";
 
 class FindPassword extends Component {

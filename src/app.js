@@ -22,13 +22,15 @@ import {
   FindPassword,
   MessageCenter,
   ServiceRecord,
+  AddNewDevices,
   RechargeSuccess,
   CustomerManager,
   AssistantManager,
   EditCustomerRemark,
+  OperationInstruction,
   DevicesInstructionList,
 } from "./views";
-import { BORDER_COLOR } from "../globalconfig";
+import { BORDER_COLOR } from "./globalconfig";
 
 const App = StackNavigator({
   Test:                   { screen: Test },
@@ -48,13 +50,15 @@ const App = StackNavigator({
   OrderManager:           { screen: OrderManager },
   MessageCenter:          { screen: MessageCenter },
   ServiceRecord:          { screen: ServiceRecord },
+  AddNewDevices:            { screen: AddNewDevices },
   RechargeSuccess:        { screen: RechargeSuccess },
   CustomerManager:        { screen: CustomerManager },
   AssistantManager:       { screen: AssistantManager },
   EditCustomerRemark:     { screen: EditCustomerRemark },
+  OperationInstruction:   { screen: OperationInstruction },
   DevicesInstructionList: { screen: DevicesInstructionList },
 }, {
-  initialRouteName: 'ValiPassword',
+  initialRouteName: 'AddNewDevices',
   navigationOptions: {
     gesturesEnabled: true,
     headerTitleStyle: { fontWeight: '100' },

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { BG_COLOR, BORDER_BOTTOM } from "../../../globalconfig";
+import { BG_COLOR, BORDER_BOTTOM } from "../../globalconfig";
 import { NoItem } from "../../components";
 
 class MessageCenter extends Component {

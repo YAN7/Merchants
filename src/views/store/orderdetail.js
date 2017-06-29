@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import {APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO} from "../../../globalconfig";
+import {APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO} from "../../globalconfig";
 
 const ListTitle = ({leftText, rightText, style})=> (
   <View style={styles.borderB}>

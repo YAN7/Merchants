@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { BG_COLOR, BORDER_BOTTOM } from "../../globalconfig";
+import { BG_COLOR, BORDER_BOTTOM } from "../globalconfig";
 
 /*
  * key1-key4的位置分别是从左到右,从上到下

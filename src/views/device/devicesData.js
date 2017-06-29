@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_WIDTH, SCREEN_PIXELRADIO } from "../../../globalconfig";
+import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_WIDTH, SCREEN_PIXELRADIO } from "../../globalconfig";
 
 class DevicesData extends Component {
   static navigationOptions = {
@@ -32,6 +32,26 @@ class DevicesData extends Component {
         </View>
         {/* 九宫格 */}
         <View style={{flexDirection: 'row', flexWrap: 'wrap', backgroundColor: BG_COLOR, marginBottom: 10}}>
+          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
+            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
+            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
+          </View>
+          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
+            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
+            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
+          </View>
+          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
+            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
+            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
+          </View>
+          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
+            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
+            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
+          </View>
+          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
+            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
+            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
+          </View>
           <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
             <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
             <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>

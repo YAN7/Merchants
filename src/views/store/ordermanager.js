@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { TabNavigator, TabBarBottom, TabBarTop } from "react-navigation";
 
-import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO } from "../../../globalconfig";
+import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_PIXELRADIO } from "../../globalconfig";
 import { NoItem } from '../../components/NoItem';
 
 // const _renderList = ()=> (

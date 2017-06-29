@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import LinearGradient from 'react-native-linear-gradient';
 
-import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR, BG_COLOR } from "../../../globalconfig";
+import { SCREEN_PIXELRADIO, APP_COLOR, BORDER_COLOR, BG_COLOR } from "../../globalconfig";
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
@@ -77,7 +77,7 @@ export default class Devices extends Component {
             <Text style={{fontSize: 18, color: APP_COLOR}}>3000.00</Text>
           </TouchableOpacity>
           <View style={{ backgroundColor: BORDER_COLOR, width: 1/SCREEN_PIXELRADIO, height: 35}} />
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={()=> navigation.navigate("MyDevices")}
             style={[{alignItems: 'center', justifyContent: 'center', flex: 1}]}>
             <Text style={{fontSize: 12, color: '#333'}}>我的设备</Text>
@@ -136,6 +136,6 @@ const styles = StyleSheet.create({
   list_wrapper: {
     paddingTop: 10,
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: BG_COLOR,
   }
 })

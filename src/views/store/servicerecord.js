@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // const List
-import { BG_COLOR, BORDER_BOTTOM } from '../../../globalconfig';
+import { BG_COLOR, BORDER_BOTTOM } from '../../globalconfig';
 
 class ServiceRecord extends Component {
   static navigationOptions = {

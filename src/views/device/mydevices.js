@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import { Button } from "../../components";
-import { BG_COLOR, APP_COLOR, BORDER_BOTTOM } from '../../../globalconfig';
+import { BG_COLOR, APP_COLOR, BORDER_BOTTOM } from '../../globalconfig';
 
 class MyDevices extends Component {
   static navigationOptions = {
