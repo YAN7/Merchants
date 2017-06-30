@@ -35,7 +35,6 @@ class DevicesData extends Component {
       }); // you add a ws:// url here
 
       client.on('connect', ()=> {
-        // alert(this.props.navigation.state.params.device_id)
         alert(this.props.navigation.state.params.device_id)
       });
 
