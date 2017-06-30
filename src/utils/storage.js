@@ -1,41 +1,44 @@
 /*
 * @Author: heyuhang
-* @Date:   2017-06-27 16:27:06
+* @Date:   2017-06-29 11:40:16
 * @Last Modified by:   heyuhang
-* @Last Modified time: 2017-06-29 11:40:11
+* @Last Modified time: 2017-06-29 11:52:07
 */
 
 'use strict';
 
-/*
-  RN用到的本地存储，注意获取key的函数返回的是promise对象，即是
-  异步的操作。
- */
+import React, { AsyncStorage } from "react";
+import Storage from "react-native-storage";
 
-import React,{ AsyncStorage } from 'react-native';
+const SIZE = 1000;
+const DEFAULT_EXPIRES = 1000 * 3600 * 24 * 10 // 默认storage有效期为10天
 
-class Storage {
+let storage = new Storage({
+  // 最大容量，默认值1000条数据循环存储
+  size: SIZE,
 
-  static get(key) {
-    return AsyncStorage.getItem(key).then((value) => {
-      return JSON.parse(value);
-    });
-  }
+  // 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
+  // 如果不指定则数据只会保存在内存中，重启后即丢失
+  storageBackend: AsyncStorage,
 
-  static set(key, value) {
-    return AsyncStorage.setItem(key, JSON.stringify(value));
-  }
+  // 数据过期时间，默认一整天（1000 * 3600 * 24 毫秒），设为null则永不过期
+  defaultExpires: DEFAULT_EXPIRES,
 
-  static update(key, value) {
-    return Storage.get(key).then((item) => {
-      value = typeof value === 'string' ? value : Object.assign({}, item, value);
-      return AsyncStorage.setItem(key, JSON.stringify(value));
-    });
-  }
+  // 读写时在内存中缓存数据。默认启用。
+  enableCache: true,
 
-  static delete(key) {
-    return AsyncStorage.removeItem(key);
-  }
-}
+  // 如果storage中没有相应数据，或数据已过期，
+  // 则会调用相应的sync方法，无缝返回最新数据。
+  // sync方法的具体说明会在后文提到
+  // 你可以在构造函数这里就写好sync的方法
+  // 或是写到另一个文件里，这里require引入
+  // 或是在任何时候，直接对storage.sync进行赋值修改
+  // sync: require('./sync')
+})
 
-export default Storage;
+
+
+export default storage;
+// class MyStorage = {
+// 	static
+// }

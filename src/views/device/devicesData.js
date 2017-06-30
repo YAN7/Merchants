@@ -9,12 +9,53 @@ import {
 
 import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_WIDTH, SCREEN_PIXELRADIO } from "../../globalconfig";
 
+const bufferUtil = require('yml-mqtt-buffer-tool')();
+
 class DevicesData extends Component {
+
   static navigationOptions = {
     title: "设备数据",
     headerTitleStyle: {
       fontWeight: '400'
     }
+  }
+
+  state = {
+    mqttToken: "",
+  }
+
+  async componentDidMount() {
+      await this.getToken();
+      let client = mqtt.connect('ws://iot.yml360.com:3000', {
+        clientId:`app@${this.state.mqttToken}`, //
+        username: this.state.mqttToken,  //
+        reconnectPeriod: 1000,
+        clean: true,
+        // password:'CO3VO2tkRWuSwEcw',
+      }); // you add a ws:// url here
+
+      client.on('connect', ()=> {
+        // alert(this.props.navigation.state.params.device_id)
+        alert(this.props.navigation.state.params.device_id)
+      });
+
+      client.on('error', (err)=> {
+        alert(err)
+      });
+
+      client.subscribe(`/devices/${this.props.navigation.state.params.device_id}/data`);
+
+      client.on("message", (topic, payload)=> {
+        alert([topic, payload.readUInt16BE(0)].join(": "));
+        // client.end()
+      });
+  }
+
+  // 获取mqtt的token
+  async getToken() {
+    await Http.post("/store/?method=device.getToken", { "token": "tzlvys-5b9fa43zm-rli", "store_admin_id": 10 }, re=> {
+      this.setState({mqttToken: re.data.access_token})
+    })
   }
 
   _renderHasData = ()=> {
@@ -32,26 +73,6 @@ class DevicesData extends Component {
         </View>
         {/* 九宫格 */}
         <View style={{flexDirection: 'row', flexWrap: 'wrap', backgroundColor: BG_COLOR, marginBottom: 10}}>
-          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
-            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
-            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
-          </View>
-          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
-            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
-            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
-          </View>
-          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
-            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
-            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
-          </View>
-          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
-            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
-            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
-          </View>
-          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
-            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
-            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
-          </View>
           <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
             <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
             <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>

@@ -9,15 +9,15 @@ import {
 
 import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../globalconfig";
 import { Button } from "../../components";
-import Http from "../../utils/http2";
 
 const List = ({placeholder, type, value, handleTextChange})=> (
   <View style={styles.list_wrapper}>
     {
       type === "account"
-      ? <Image style={[styles.borderR, {marginHorizontal: 10}]} source={require("../../static/img/login_user.png")} />
-      : <Image style={[styles.borderR, {marginHorizontal: 10}]} source={require("../../static/img/login_password.png")} />
+      ? <Image style={{marginHorizontal: 10}} source={require("../../static/img/login_user.png")} />
+      : <Image style={{marginHorizontal: 10}} source={require("../../static/img/login_password.png")} />
     }
+    <View style={{width: 1/SCREEN_PIXELRADIO, backgroundColor: BORDER_COLOR, height: 25}} />
     <TextInput
       placeholder={placeholder}
       placeholderTextColor="#c3c3c3"
@@ -54,11 +54,10 @@ class Login extends Component {
       phone: this.state.account,
       password: this.state.pwd,
     }, (re)=> {
-      storage.save({
+      Storage.save({
         key: 'userInfo',
         data: re.data,
-      })then(()=> this.props.navigation.navigate("IndexPage"))
-
+      }).then(()=> this.props.navigation.navigate("IndexPage"))
     }, null, ()=> {
       this.setState({isLoading: false})
     })
@@ -97,11 +96,6 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  borderR: {
-    // borderStyle: 'solid',
-    borderRightWidth: 1/SCREEN_PIXELRADIO,
-    borderColor: BORDER_COLOR,
-  },
   list_wrapper: {
     flexDirection: 'row',
     alignItems: 'center',

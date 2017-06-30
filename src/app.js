@@ -50,7 +50,7 @@ const App = StackNavigator({
   OrderManager:           { screen: OrderManager },
   MessageCenter:          { screen: MessageCenter },
   ServiceRecord:          { screen: ServiceRecord },
-  AddNewDevices:            { screen: AddNewDevices },
+  AddNewDevices:          { screen: AddNewDevices },
   RechargeSuccess:        { screen: RechargeSuccess },
   CustomerManager:        { screen: CustomerManager },
   AssistantManager:       { screen: AssistantManager },
@@ -58,7 +58,7 @@ const App = StackNavigator({
   OperationInstruction:   { screen: OperationInstruction },
   DevicesInstructionList: { screen: DevicesInstructionList },
 }, {
-  initialRouteName: 'Login',
+  initialRouteName: 'MyDevices',
   navigationOptions: {
     gesturesEnabled: true,
     headerTitleStyle: { fontWeight: '100' },

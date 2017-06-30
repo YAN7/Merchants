@@ -2,7 +2,7 @@
 * @Author: heyuhang
 * @Date:   2017-06-27 15:52:03
 * @Last Modified by:   heyuhang
-* @Last Modified time: 2017-06-28 18:28:01
+* @Last Modified time: 2017-06-30 11:34:53
 */
 
 'use strict';
@@ -15,7 +15,6 @@ import {
 } from "react-native";
 
 import { setLoading } from "../../actions";
-import Http from "../../utils/http2";
 import { BG_COLOR } from "../../globalconfig";
 
 class OperationInstruction extends Component {
@@ -42,7 +41,7 @@ class OperationInstruction extends Component {
 			this.setState({content: re.data.content})
 		}, (error)=> {
 			alert(error.msg);
-		}, ()=> {}, ()=> {
+		}, ()=> {
 			this.props.requestSuccess(false);
 		})
 	}

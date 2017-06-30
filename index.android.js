@@ -10,12 +10,16 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 
 import App from "./src/app";
+import Http from "./src/utils/http";
 import AppReducers  from "./src/reducers";
-import Storage from "./src/utils/storage2";
+import Storage from "./src/utils/storage";
+import mqtt from "./src/utils/browserMqtt";
 
 const store = createStore(AppReducers);
 
-global.storage = Storage;
+//  设置全局变量
+global.Storage = Storage;
+global.Http = Http;
 
 export default class YmlMerchants extends Component {
   render() {

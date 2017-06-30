@@ -49,13 +49,14 @@ export default class Store extends Component {
   };
 
   componentDidMount() {
-    storage.load({key: "userInfo"}).then(re=> {
+    Storage.load({key: "userInfo"}).then(re=> {
       this.setState({userInfo: re})
     })
   };
 
   render() {
     const { navigation } = this.props;
+    const { userInfo } = this.state;
     const title = { title: "123" }
     return (
       <ScrollView style={{flex: 1, backgroundColor: BG_COLOR}}>
@@ -65,7 +66,7 @@ export default class Store extends Component {
             <TouchableOpacity onPress={()=> navigation.navigate('Settings')}>
               <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_nav_btn_back.pngstore_settings_icon.png")}/>
             </TouchableOpacity>
-            <Text numberOfLines={1} style={styles.store_text}>{this.state.userInfo.store_name}</Text>
+            <Text numberOfLines={1} style={styles.store_text}>{userInfo.store_name}</Text>
             <TouchableOpacity onPress={()=> navigation.navigate('MessageCenter')}>
               <Image style={{width: 20, height: 20}} source={require("./../../static/img/store_message_icon.png")} />
             </TouchableOpacity>
@@ -73,11 +74,11 @@ export default class Store extends Component {
           <View style={styles.turnover}>
             <View style={styles.turnover_today}>
               <Text style={{fontSize: 36, color: "#fff"}}>123.123</Text>
-              <Text style={{fontSize: 14, color: "#fff"}}>今天营业额</Text>
+              <Text style={{fontSize: 14, color: "#fff"}}>{userInfo.token}</Text>
             </View>
             <View style={styles.turnover_month}>
               <Text style={{fontSize: 36, color: "#fff"}}>2784.00</Text>
-              <Text style={{fontSize: 14, color: "#fff"}}>本月营业额</Text>
+              <Text style={{fontSize: 14, color: "#fff"}}>{userInfo.store_admin_id}</Text>
             </View>
           </View>
         </LinearGradient>

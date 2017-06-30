@@ -2,7 +2,7 @@
 * @Author: heyuhang
 * @Date:   2017-06-29 14:40:38
 * @Last Modified by:   heyuhang
-* @Last Modified time: 2017-06-29 19:15:39
+* @Last Modified time: 2017-06-30 11:31:40
 */
 
 'use strict';
@@ -13,10 +13,6 @@ import {
 } from "react-native";
 import { QRScannerView } from 'ac-qrcode';
 
-import Http from "../../utils/http2";
-
-
-
 class AddNewDevices extends Component {
 
 	static navigationOptions = {
@@ -26,21 +22,19 @@ class AddNewDevices extends Component {
 
 	render() {
 		return (
-    <QRScannerView
-	    renderTopBarView={() => this._renderTitleBar()}
-	    renderBottomMenuView={() => this._renderMenu()}
-	    onScanResultReceived={ re=> this.handleSuccess(re)}
-	  />
+	    <QRScannerView
+		    renderTopBarView={() => this._renderTitleBar()}
+		    renderBottomMenuView={() => this._renderMenu()}
+		    onScanResultReceived={ re=> this.handleSuccess(re)}
+		  />
 		)
 	}
 
 	handleSuccess(re) {
 		const jsonre = JSON.stringify(re);
-		// this.props.navigation.navigate.back();
-		alert(jsonre)
-		// Http.postWithAuth("/store/?method=device.active", { device_id: re.id }, re=> {
-		// 	this.props.navigation.navigate.back();
-		// })
+		Http.postWithAuth("/store/?method=device.active", { device_id: re.data }, re=> {
+			this.props.navigation.goBack();
+		})
 	}
 
 
