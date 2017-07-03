@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_WIDTH, SCREEN_PIXELRADIO } from "../../globalconfig";
+import { setDeviceData } from "../../actions/devices";
 
 const bufferUtil = require('yml-mqtt-buffer-tool')();
 
