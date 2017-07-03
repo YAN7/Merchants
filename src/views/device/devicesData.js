@@ -22,6 +22,8 @@ class DevicesData extends Component {
 
   state = {
     mqttToken: "",
+    deviceData: [],
+    client: '',
   }
 
   async componentDidMount() {
@@ -32,10 +34,13 @@ class DevicesData extends Component {
         reconnectPeriod: 1000,
         clean: true,
         // password:'CO3VO2tkRWuSwEcw',
-      }); // you add a ws:// url here
+      });
 
       client.on('connect', ()=> {
-        alert(this.props.navigation.state.params.device_id)
+        // alert(this.props.navigation.state.params.device_id)
+        this.setState({
+          client,
+        })
       });
 
       client.on('error', (err)=> {
@@ -45,9 +50,21 @@ class DevicesData extends Component {
       client.subscribe(`/devices/${this.props.navigation.state.params.device_id}/data`);
 
       client.on("message", (topic, payload)=> {
-        alert([topic, payload.readUInt16BE(0)].join(": "));
-        // client.end()
+        // 校验数据
+        // flag ? `校验成功` : '校验失败'
+        const flag = bufferUtil.rw.check(payload);
+        if (flag) {
+          const msg = bufferUtil.rw.read(payload, '/devices/:id/data');
+          const info = bufferUtil.getDevice(this.props.navigation.state.params.modelName).dataDecode(msg);
+          this.setState({
+            deviceData: info.keyValues,
+          })
+        }
       });
+  }
+
+  componentWillUnmount() {
+    this.state.client && this.state.client.end();
   }
 
   // 获取mqtt的token
@@ -57,25 +74,33 @@ class DevicesData extends Component {
     })
   }
 
+  _renderCustomer = ()=> (
+    <View style={[styles.borderB, {flexDirection: 'row', backgroundColor: BG_COLOR, justifyContent: 'space-between', padding: 12}]}>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+        <Image style={{width: 20, height: 20}} source={require("../../static/img/store_physician_icon.png")}/>
+        <Text>   2017-05-26 23:18:00</Text>
+      </View>
+      <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+        <Image style={{width: 20, height: 20}} source={require("../../static/img/store_physician_icon.png")}/>
+        <Text>   张璇</Text>
+      </View>
+    </View>
+  )
+
   _renderHasData = ()=> {
     return (
-      <View style={{}}>
-        <View style={[styles.borderB, {flexDirection: 'row', backgroundColor: BG_COLOR, justifyContent: 'space-between', padding: 12}]}>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-            <Image style={{width: 20, height: 20}} source={require("../../static/img/store_physician_icon.png")}/>
-            <Text>   2017-05-26 23:18:00</Text>
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-            <Image style={{width: 20, height: 20}} source={require("../../static/img/store_physician_icon.png")}/>
-            <Text>   张璇</Text>
-          </View>
-        </View>
+      <View>
+        {this._renderCustomer()}
         {/* 九宫格 */}
         <View style={{flexDirection: 'row', flexWrap: 'wrap', backgroundColor: BG_COLOR, marginBottom: 10}}>
-          <View style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center'}]}>
-            <Text style={{fontSize: 16, color: '#999'}}>能量</Text>
-            <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>4.5j</Text>
-          </View>
+          {
+            this.state.deviceData.length > 0 && this.state.deviceData.map((item, index)=> (
+              <View key={index} style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center', padding: 5}]}>
+                <Text style={{fontSize: 16, color: '#999'}}>{item.key}</Text>
+                <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>{item.value}</Text>
+              </View>
+            ))
+          }
         </View>
       </View>
     )
@@ -83,16 +108,7 @@ class DevicesData extends Component {
 
   _renderNoData = ()=> (
     <View style={{backgroundColor: BG_COLOR}}>
-      <View style={[styles.borderB, {flexDirection: 'row', justifyContent: 'space-between', padding: 12}]}>
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-          <Image style={{width: 20, height: 20}} source={require("../../static/img/store_physician_icon.png")}/>
-          <Text>   2017-05-26 23:18:00</Text>
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-          <Image style={{width: 20, height: 20}} source={require("../../static/img/store_physician_icon.png")}/>
-          <Text>   张璇</Text>
-        </View>
-      </View>
+      {this._renderCustomer()}
       {/* 无记录 */}
       <Text style={{alignSelf: 'center', padding: 20}}>无记录</Text>
     </View>

@@ -43,7 +43,7 @@ class MyDevices extends Component {
   // 渲染lie b
   _renderList = (item)=> (
     <TouchableOpacity
-      onPress={()=> this.props.navigation.navigate("DevicesData", {device_id: item.device_id})}
+      onPress={()=> this.props.navigation.navigate("DevicesData", {device_id: item.device_id, modelName: item.model_name})}
       key={item.device_id}
       style={styles.list_wrapper}
       >

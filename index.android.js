@@ -17,9 +17,10 @@ import mqtt from "./src/utils/browserMqtt";
 
 const store = createStore(AppReducers);
 
-//  设置全局变量
+// 设置全局变量
 global.Storage = Storage;
 global.Http = Http;
+global.Store = store;
 
 export default class YmlMerchants extends Component {
   render() {

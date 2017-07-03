@@ -28,9 +28,6 @@ mapDispatchToProps = (dispatch, props)=> ({
 class ValiPassword extends Component {
   static navigationOptions = {
     title: '验证登录密码',
-    headerTitleStyle: {
-      fontWeight: '100'
-    }
   }
   state = {
     pwd: '',
