@@ -22,6 +22,7 @@ export { default as Devices } from "./device/devices";
 export { default as Settings } from "./device/settings";
 export { default as MyDevices } from "./device/mydevices";
 export { default as DevicesData } from "./device/devicesData";
+export { default as DevicesDetail } from "./device/devicesdetail";
 export { default as AddNewDevices } from "./device/addnewdevices";
 export { default as DevicesInstructionList } from "./device/devicesinstructionlist";
 

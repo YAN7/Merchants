@@ -2,7 +2,7 @@
 * @Author: heyuhang
 * @Date:   2017-06-29 14:40:38
 * @Last Modified by:   heyuhang
-* @Last Modified time: 2017-06-30 11:31:40
+* @Last Modified time: 2017-07-06 11:10:14
 */
 
 'use strict';
@@ -32,7 +32,7 @@ class AddNewDevices extends Component {
 
 	handleSuccess(re) {
 		const jsonre = JSON.stringify(re);
-		Http.postWithAuth("/store/?method=device.active", { device_id: re.data }, re=> {
+		Http.postWithAuth("/store/?method=device.active", { "device_id": re.data}, re=> {
 			this.props.navigation.goBack();
 		})
 	}

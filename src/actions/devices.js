@@ -1,8 +1,17 @@
-import * as ActionType from "../actiontype";
+import ActionTypes from "./actiontypes";
 
-// const setDeviceData(deviceData)=> (
-//   type: ActionType.DEVICE_DATA,
-//   deviceData,
-// )
+const setDeviceData = (deviceData)=> ({
+	type: ActionTypes.GET_DEVICE_DATA,
+	deviceData,
+})
 
-// export setDeviceData;
+// function setDeviceData(deviceData) {
+// 	return {
+// 		type: ActionTypes.GET_DEVICE_DATA,
+// 		deviceData,
+// 	}
+// }
+
+export default {
+	setDeviceData
+}

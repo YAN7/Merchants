@@ -6,9 +6,10 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import Marquee from "@remobile/react-native-marquee";
 
-import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_WIDTH, SCREEN_PIXELRADIO } from "../../globalconfig";
 import { setDeviceData } from "../../actions/devices";
+import { APP_COLOR, BORDER_COLOR, BG_COLOR, SCREEN_WIDTH, SCREEN_PIXELRADIO } from "../../globalconfig";
 
 const bufferUtil = require('yml-mqtt-buffer-tool')();
 
@@ -29,16 +30,16 @@ class DevicesData extends Component {
 
   async componentDidMount() {
       await this.getToken();
+      // 公网： test.mosca.io:3000
+      // 测试： iot.yml360.com:3000
       let client = mqtt.connect('ws://iot.yml360.com:3000', {
         clientId:`app@${this.state.mqttToken}`, //
         username: this.state.mqttToken,  //
         reconnectPeriod: 1000,
         clean: true,
-        // password:'CO3VO2tkRWuSwEcw',
       });
 
       client.on('connect', ()=> {
-        // alert(this.props.navigation.state.params.device_id)
         this.setState({
           client,
         })
@@ -50,18 +51,23 @@ class DevicesData extends Component {
 
       client.subscribe(`/devices/${this.props.navigation.state.params.device_id}/data`);
 
+
       client.on("message", (topic, payload)=> {
-        // 校验数据
-        // flag ? `校验成功` : '校验失败'
-        const flag = bufferUtil.rw.check(payload);
-        if (flag) {
-          const msg = bufferUtil.rw.read(payload, '/devices/:id/data');
-          const info = bufferUtil.getDevice(this.props.navigation.state.params.modelName).dataDecode(msg);
-          this.setState({
-            deviceData: info.keyValues,
-          })
+        try {
+          // 校验数据
+          // flag ? `校验成功` : '校验失败'
+          const flag = bufferUtil.rw.check(payload);
+          if (flag) {
+            const msg = bufferUtil.rw.read(payload, '/devices/:id/data');
+            const info = bufferUtil.getDevice(this.props.navigation.state.params.modelName).dataDecode(msg);
+            this.setState({
+              deviceData: info.keyValues,
+            })
+          }
+        } catch(err) {
+          console.log(err);
         }
-      });
+      })
   }
 
   componentWillUnmount() {
@@ -70,7 +76,7 @@ class DevicesData extends Component {
 
   // 获取mqtt的token
   async getToken() {
-    await Http.post("/store/?method=device.getToken", { "token": "tzlvys-5b9fa43zm-rli", "store_admin_id": 10 }, re=> {
+    await Http.post("/store/?method=device.getToken", { "token": "e2hufv-5bb1ce063-mfb", "store_admin_id": 10 }, re=> {
       this.setState({mqttToken: re.data.access_token})
     })
   }
@@ -97,8 +103,16 @@ class DevicesData extends Component {
           {
             this.state.deviceData.length > 0 && this.state.deviceData.map((item, index)=> (
               <View key={index} style={[styles.borderB, styles.borderR, {width: SCREEN_WIDTH/3, height: 100, justifyContent: 'center', alignItems: 'center', padding: 5}]}>
-                <Text style={{fontSize: 16, color: '#999'}}>{item.key}</Text>
-                <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>{item.value}</Text>
+                {
+                  item.key.length >= 7
+                    ? <Marquee style={{fontSize: 16, color: '#999'}}>{item.key}</Marquee>
+                    : <Text style={{fontSize: 16, color: '#999'}}>{item.key}</Text>
+                }
+                {
+                  item.value.length >= 7
+                    ? <Marquee style={{fontSize: 18, color: "#333", marginTop: 7}}>{item.value}</Marquee>
+                    : <Text style={{fontSize: 18, color: "#333", marginTop: 7}}>{item.value}</Text>
+                }
               </View>
             ))
           }

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../globalconfig";
-import { Button } from "../../components";
+import { Button, Hud } from "../../components";
 
 const List = ({placeholder, type, value, handleTextChange})=> (
   <View style={styles.list_wrapper}>
@@ -42,6 +42,11 @@ class Login extends Component {
     header: null,
   }
 
+  componentDidMount() {
+    // this.hud.showLoading(true);
+    // this.hud.showMessage("登录成功!");
+  }
+
   state = {
     account: '',
     pwd: '',
@@ -54,6 +59,7 @@ class Login extends Component {
       phone: this.state.account,
       password: this.state.pwd,
     }, (re)=> {
+      this.hud.showMessage("登录成功!");
       Storage.save({
         key: 'userInfo',
         data: re.data,
@@ -90,6 +96,7 @@ class Login extends Component {
           isLoading={this.state.isLoading}
           handlePress={()=> this.login()}
         />
+        <Hud ref={hud => this.hud = hud}/>
       </View>
     )
   }

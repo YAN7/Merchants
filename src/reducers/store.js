@@ -1,9 +1,9 @@
+import { ActionTypes } from "../actions";
+
 const StoreReducers = (state = {isLoading: true}, action)=> {
   switch (action.type) {
-    case "SET_LOADING":
-      return {
-        isLoading: action.isLoading,
-      }
+    case ActionTypes.SET_LOADING:
+      return Object.assign({}, {isLoading: action.isLoading})
     default:
       return state;
   }

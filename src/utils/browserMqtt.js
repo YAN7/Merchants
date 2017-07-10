@@ -579,6 +579,7 @@ var isArray = __webpack_require__(49)
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
 exports.INSPECT_MAX_BYTES = 50
+global.Buffer = Buffer;
 
 /**
  * If `Buffer.TYPED_ARRAY_SUPPORT`:
@@ -8809,7 +8810,7 @@ function ReInterval (callback, interval, args) {
       self._interval = undefined;
     }
   };
-  
+
   this.destroy = function () {
     if (self._interval) {
       clearInterval(self._interval);

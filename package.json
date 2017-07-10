@@ -9,18 +9,20 @@
     "link": "react-native link"
   },
   "dependencies": {
+    "@remobile/react-native-marquee": "^1.0.1",
     "ac-qrcode": "^1.0.1",
     "prop-types": "^15.5.10",
-    "yml-mqtt-buffer-tool": "git+ssh://git@git.yml360.com:10023/iot/yml-mqtt-buffer-tool.git",
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
     "react-native-camera": "^0.9.4",
+    "react-native-easy-toast": "^1.0.6",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-storage": "^0.2.2",
     "react-native-swipe-list-view": "^0.4.1",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "yml-mqtt-buffer-tool": "git+ssh://git@git.yml360.com:10023/iot/yml-mqtt-buffer-tool.git"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",

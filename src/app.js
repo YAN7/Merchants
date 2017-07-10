@@ -23,6 +23,7 @@ import {
   MessageCenter,
   ServiceRecord,
   AddNewDevices,
+  DevicesDetail,
   RechargeSuccess,
   CustomerManager,
   AssistantManager,
@@ -43,6 +44,7 @@ const App = StackNavigator({
   BillDetail:             { screen: BillDetail },
   DevicesData:            { screen: DevicesData },
   OrderDetail:            { screen: OrderDetail },
+  DevicesDetail:          { screen: DevicesDetail },
   CustomDetail:           { screen: CustomDetail },
   ValiPassword:           { screen: ValiPassword },
   AddAssistant:           { screen: AddAssistant },
@@ -58,7 +60,7 @@ const App = StackNavigator({
   OperationInstruction:   { screen: OperationInstruction },
   DevicesInstructionList: { screen: DevicesInstructionList },
 }, {
-  initialRouteName: 'MyDevices',
+  initialRouteName: 'Login',
   navigationOptions: {
     gesturesEnabled: true,
     headerTitleStyle: { fontWeight: '100' },

@@ -1,7 +1,9 @@
+import { ActionTypes } from "../actions";
+
 const DevicesReducers = (state = {}, action)=> {
   switch (action.TYPE) {
-    case "DEVICE_DATA":
-      return {}
+    case ActionTypes.GET_DEVICE_DATA:
+      return Object.assign({}, state, action.deviceData)
     default:
       return state;
   }
