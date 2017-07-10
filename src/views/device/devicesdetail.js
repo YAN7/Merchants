@@ -70,7 +70,6 @@ class DevicesDetail extends Component {
         if (flag) {
           const msg = bufferUtil.rw.read(payload, '/devices/:id/data');
           const info = bufferUtil.getDevice(this.props.navigation.state.params.modelName).dataDecode(msg);
-          alert(JSON.stringify(info));
           this.getMachineState(msg.keyValues);
           this.setState({
             deviceData: info.keyValues,

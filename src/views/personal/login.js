@@ -7,8 +7,9 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../globalconfig";
 import { Button, Hud } from "../../components";
+import { ActionTypes } from "../../actions";
+import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../globalconfig";
 
 const List = ({placeholder, type, value, handleTextChange})=> (
   <View style={styles.list_wrapper}>
@@ -43,8 +44,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    // this.hud.showLoading(true);
-    // this.hud.showMessage("登录成功!");
+    alert(JSON.stringify(ActionTypes))
   }
 
   state = {
@@ -60,6 +60,7 @@ class Login extends Component {
       password: this.state.pwd,
     }, (re)=> {
       this.hud.showMessage("登录成功!");
+      this.props.dispatch(UserAction.SET_USER_INFO(re.data))
       Storage.save({
         key: 'userInfo',
         data: re.data,

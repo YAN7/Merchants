@@ -74,11 +74,11 @@ export default class Store extends Component {
           <View style={styles.turnover}>
             <View style={styles.turnover_today}>
               <Text style={{fontSize: 36, color: "#fff"}}>123.123</Text>
-              <Text style={{fontSize: 14, color: "#fff"}}>{userInfo.token}</Text>
+              <Text style={{fontSize: 14, color: "#fff"}}>{Store.userInfo.token}</Text>
             </View>
             <View style={styles.turnover_month}>
               <Text style={{fontSize: 36, color: "#fff"}}>2784.00</Text>
-              <Text style={{fontSize: 14, color: "#fff"}}>{userInfo.store_admin_id}</Text>
+              <Text style={{fontSize: 14, color: "#fff"}}>{Store.userInfo.store_admin_id}</Text>
             </View>
           </View>
         </LinearGradient>
