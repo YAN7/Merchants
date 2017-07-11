@@ -1,8 +1,8 @@
-const SET_USER_INFO = (user)=> ({
-  type: "USER_INFO",
+const setUserInfo = (user)=> ({
+  type: "SET_USER_INFO",
   user: user,
 })
 
-export {
-  SET_USER_INFO,
+export default {
+  setUserInfo
 }

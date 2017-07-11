@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
+import { connect } from "react-redux";
 import LinearGradient from 'react-native-linear-gradient';
 
 import { SCREEN_PIXELRADIO, APP_COLOR, BG_COLOR, PLATFORM } from "../../globalconfig";
@@ -39,7 +40,7 @@ const CardItem = ({item, note, number, image, handlePress})=> (
   </TouchableOpacity>
 )
 
-export default class Store extends Component {
+class Store extends Component {
 
   constructor() {
     super();
@@ -74,11 +75,11 @@ export default class Store extends Component {
           <View style={styles.turnover}>
             <View style={styles.turnover_today}>
               <Text style={{fontSize: 36, color: "#fff"}}>123.123</Text>
-              <Text style={{fontSize: 14, color: "#fff"}}>{Store.userInfo.token}</Text>
+              <Text style={{fontSize: 14, color: "#fff"}}>132</Text>
             </View>
             <View style={styles.turnover_month}>
               <Text style={{fontSize: 36, color: "#fff"}}>2784.00</Text>
-              <Text style={{fontSize: 14, color: "#fff"}}>{Store.userInfo.store_admin_id}</Text>
+              <Text style={{fontSize: 14, color: "#fff"}}>123</Text>
             </View>
           </View>
         </LinearGradient>
@@ -179,3 +180,7 @@ const styles = StyleSheet.create({
     height: 100,
   }
 })
+
+export default connect(state=> ({
+  userInfo: state.user.userInfo,
+}))(Store);

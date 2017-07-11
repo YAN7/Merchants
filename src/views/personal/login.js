@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import {
   View,
   Text,
@@ -7,8 +9,9 @@ import {
   StyleSheet,
 } from "react-native";
 
+
+import { UserAction } from "../../actions";
 import { Button, Hud } from "../../components";
-import { ActionTypes } from "../../actions";
 import { APP_COLOR, BORDER_COLOR, SCREEN_PIXELRADIO, BG_COLOR } from "../../globalconfig";
 
 const List = ({placeholder, type, value, handleTextChange})=> (
@@ -37,6 +40,12 @@ List.defaultProps = {
   type: 'account',
 }
 
+const mapDispatchToProps = dispatch=> ({
+  setUserInfo: data=> {
+    dispatch(UserAction.setUserInfo(data))
+  }
+})
+
 class Login extends Component {
 
   static navigationOptions = {
@@ -44,7 +53,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    alert(JSON.stringify(ActionTypes))
+     
   }
 
   state = {
@@ -58,13 +67,11 @@ class Login extends Component {
     Http.post("/store/?method=auth.login", {
       phone: this.state.account,
       password: this.state.pwd,
-    }, (re)=> {
+    }, async (re)=> {
       this.hud.showMessage("登录成功!");
-      this.props.dispatch(UserAction.SET_USER_INFO(re.data))
-      Storage.save({
-        key: 'userInfo',
-        data: re.data,
-      }).then(()=> this.props.navigation.navigate("IndexPage"))
+      await this.props.setUserInfo(re.data);
+      // alert(JSON.stringify())
+      this.props.navigation.navigate("IndexPage");
     }, null, ()=> {
       this.setState({isLoading: false})
     })
@@ -115,4 +122,9 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Login;
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators({
+//     UserAction
+//   }, dispatch)
+
+export default connect(null, mapDispatchToProps)(Login);

@@ -20,7 +20,7 @@ const store = createStore(AppReducers);
 // 设置全局变量
 global.Storage = Storage;
 global.Http = Http;
-global.Store = store;
+global.Store = store.getState();
 
 export default class YmlMerchants extends Component {
   render() {

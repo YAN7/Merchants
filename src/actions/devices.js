@@ -5,13 +5,6 @@ const setDeviceData = (deviceData)=> ({
 	deviceData,
 })
 
-// function setDeviceData(deviceData) {
-// 	return {
-// 		type: ActionTypes.GET_DEVICE_DATA,
-// 		deviceData,
-// 	}
-// }
-
 export default {
 	setDeviceData
 }

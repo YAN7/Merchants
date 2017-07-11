@@ -11,10 +11,12 @@ import React, { Component } from "react";
 import {
 	ActivityIndicator,
 	WebView,
+	View,
+	Text,
 	ScrollView,
 } from "react-native";
 
-import { setLoading } from "../../actions";
+import { LoadingAction } from "../../actions";
 import { BG_COLOR } from "../../globalconfig";
 
 class OperationInstruction extends Component {
@@ -24,15 +26,12 @@ class OperationInstruction extends Component {
 	}
 
 	static mapStateToProps = (state, props)=> ({
-		isLoading: state.isLoading
+		isLoading: state.StoreReducers.isLoading,
 	})
 
 	static mapDispatchToProps = (dispatch, props)=> ({
 		requestSuccess: (isLoading)=> {
-			dispatch(setLoading(isLoading))
-		},
-		setLoadingToFalse: ()=> {
-
+			dispatch(LoadingAction.setLoading(isLoading))
 		}
 	})
 
@@ -57,9 +56,9 @@ class OperationInstruction extends Component {
 	render () {
 		const { content } = this.state;
 		return (
-			this.props.isLoading
-			? <ActivityIndicator/>
-			: <WebView style={{paddingTop: 100, backgroundColor: BG_COLOR, flex: 1}} source={{html: this.state.content}} />
+				this.props.isLoading
+				? <ActivityIndicator/>
+				: <WebView style={{paddingTop: 100, backgroundColor: BG_COLOR, flex: 1}} source={{html: this.state.content}} />
 		)
 	}
 }

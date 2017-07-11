@@ -6,10 +6,10 @@ const UserReducers = (state={}, action)=> {
       Storage.save({
         key: "userInfo",
         data: action.user,
-      })
+      });
       return Object.assign({}, state, {userInfo: action.user})
     }
-    default: 
+    default:
     return state;
   }
 }

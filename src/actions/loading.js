@@ -11,4 +11,6 @@ const setLoading = (isLoading)=> ({
   isLoading,
 })
 
-export default setLoading;
+export default {
+  setLoading,
+};

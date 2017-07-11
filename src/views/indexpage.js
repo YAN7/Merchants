@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-
 import { Image } from "react-native";
-
+import { connect } from "react-redux";
+import React, { Component } from "react";
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 import { Store, Devices } from "./index";

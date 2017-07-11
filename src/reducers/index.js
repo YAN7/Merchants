@@ -5,9 +5,9 @@ import StoreReducers from "./store";
 import UserReducers from "./userinfo";
 
 const AppReducers = combineReducers({
-  StoreReducers,
-  DevicesReducers,
-  UserReducers,
+  staore: StoreReducers,
+  device: DevicesReducers,
+  user: UserReducers,
 })
 
 export default AppReducers;

@@ -56,9 +56,8 @@ const Http = {
 			const res = await response.json();
 			if (res.state === FAILURE_STATE) {  // state为0的时候，这里可以对返回的各种状态码做处理
 				IS_DEV && console.log(res);
-
 				if (res.code === 308) {  // 状态码为308时登录失效
-					// do something
+					// todo
 				}
 				alert(`onMistake${res.msg}`);
 				typeof onMistake === "function" && onMistake(res);

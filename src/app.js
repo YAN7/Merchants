@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AppRegistry } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { connect } from "react-redux";
+import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 
 import {
   Test,
@@ -44,12 +45,12 @@ const App = StackNavigator({
   BillDetail:             { screen: BillDetail },
   DevicesData:            { screen: DevicesData },
   OrderDetail:            { screen: OrderDetail },
-  DevicesDetail:          { screen: DevicesDetail },
   CustomDetail:           { screen: CustomDetail },
   ValiPassword:           { screen: ValiPassword },
   AddAssistant:           { screen: AddAssistant },
   FindPassword:           { screen: FindPassword },
   OrderManager:           { screen: OrderManager },
+  DevicesDetail:          { screen: DevicesDetail },
   MessageCenter:          { screen: MessageCenter },
   ServiceRecord:          { screen: ServiceRecord },
   AddNewDevices:          { screen: AddNewDevices },
@@ -73,6 +74,12 @@ const App = StackNavigator({
   }
 })
 
-export default App;
+const AppWithRedux = ({ dispatch })=> (
+  <App navigation={addNavigationHelpers({ dispatch })} />
+)
 
-// AppRegistry.registerComponent('YmlMerchants', () => YmlMerchants);
+const mapStateToProps = state=> ({
+  // state: state,
+})
+
+export default App;
